@@ -69,10 +69,24 @@
             }
 
             that._onStart(that.consts.PROVIDER_DEFAULT);
-
-            return app.everlive.Users.login(username, password)
-                .then($.proxy(that._onSuccess, that, that.consts.PROVIDER_DEFAULT))
-                .then(null, $.proxy(that._onError, that, that.consts.PROVIDER_DEFAULT));
+            var bytes = Crypto.charenc.Binary.stringToBytes("ddimitrov" + ":" + "Telerik34");
+        	var base64 = Crypto.util.bytesToBase64(bytes);
+            
+            $.ajax({
+                url: "http://enterprisepocs.cloudapp.net/_api/contextinfo",
+                type: "POST",
+                headers: {
+                    "ACCEPT": "application/json;odata=verbose",
+                    "Authorization": "Basic " + base64
+                },
+                success:$.proxy(that._onSuccess, that, that.consts.PROVIDER_DEFAULT),
+                error: $.proxy(that._onError, that, that.consts.PROVIDER_DEFAULT),
+                xhrFields: {
+                	withCredentials: true
+                },
+                dataType: 'json',
+                crossDomain: true
+            });
         },
   
         logout: function () {
@@ -93,17 +107,12 @@
 
         _onSuccess: function (provider, e) {
             var that = this;
+            console.log(e);
 
             app.common.hideLoading();
-            app.everlive.Users.currentUser()
-                .then(function (data) {
-                    that.set("displayName", data.result.DisplayName);
-                    app.currentUser = data.result;
-
-                    app.settingsService.setUserCredentials(that.get("username").trim(), that.get("password").trim(), app.currentUser.Id, e.result.access_token);
-
-                    app.common.navigateToView(app.config.views.dashboard);
-                });
+            that.set("displayName", that.get("username").trim());
+            app.settingsService.setUserCredentials(that.get("username").trim(), that.get("password").trim(), e.d.GetContextWebInformation.FormDigestValue);
+            app.common.navigateToView(app.config.views.dashboard);            
         },
     });
 

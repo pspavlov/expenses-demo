@@ -22,9 +22,8 @@
 		viewModel: null,
         logged: false,
         consts: {
-            localStorageKeyUsername: "dubaiServicesUsername",
-            localStorageKeyPassword: "dubaiServicesPassword",
-            localStorageKeyId: "dubaiServicesId"
+            localStorageKeyUsername: "expensesUsername",
+            localStorageKeyPassword: "expensesPassword",
         },
         
 		init: function () {
@@ -59,16 +58,15 @@
            app.loginService.signInViewModel.logout(); 
         },
         
-        setUserCredentials: function(username, password, id, token) {
-            localStorage.setItem("accessToken", token);
+        setUserCredentials: function(username, password, formDigestValue) {
+            localStorage.setItem("formDigestValue", formDigestValue);
             localStorage.setItem(this.consts.localStorageKeyUsername, username);
             localStorage.setItem(this.consts.localStorageKeyPassword, password);
-            localStorage.setItem(this.consts.localStorageKeyId, id);
         },        
         
         
         isLogged: function() {
-        	return localStorage.getItem("accessToken");
+        	return localStorage.getItem("formDigestValue");
         },
         
         removeCredentials: function() {
