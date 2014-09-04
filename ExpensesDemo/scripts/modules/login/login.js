@@ -70,15 +70,16 @@
 
             that._onStart(that.consts.PROVIDER_DEFAULT);
             var bytes = Crypto.charenc.Binary.stringToBytes("ddimitrov" + ":" + "Telerik34");
-            app.settingsService.userAuthHash = Crypto.util.bytesToBase64(bytes);
+            var userAuthHash = Crypto.util.bytesToBase64(bytes);
+            
             $.ajax({
                 url: "http://enterprisepocs.cloudapp.net/_api/contextinfo",
                 type: "POST",
                 headers: {
                     "ACCEPT": "application/json;odata=verbose",
-                    "Authorization": "Basic " + app.settingsService.userAuthHash
+                    "Authorization": "Basic " + userAuthHash
                 },
-                success:$.proxy(that._onSuccess, that, that.consts.PROVIDER_DEFAULT),
+                success:$.proxy(that._onSuccess, that, userAuthHash),
                 error: $.proxy(that._onError, that, that.consts.PROVIDER_DEFAULT),
                 xhrFields: {
                 	withCredentials: true
@@ -104,12 +105,11 @@
             app.common.navigateToView(app.config.views.settingsStarting);
         },
 
-        _onSuccess: function (provider, e) {
+        _onSuccess: function (userAuthHash, e) {
             var that = this;
-
             app.common.hideLoading();
             that.set("displayName", that.get("username").trim());
-            app.settingsService.setUserCredentials(that.get("username").trim(), that.get("password").trim(), e.d.GetContextWebInformation.FormDigestValue);
+            app.settingsService.setUserCredentials(that.get("username").trim(), that.get("password").trim(),userAuthHash, e.d.GetContextWebInformation.FormDigestValue);
             app.common.navigateToView(app.config.views.dashboard);            
         },
     });

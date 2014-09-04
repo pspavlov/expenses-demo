@@ -20,11 +20,12 @@
     
 	SettingsService = kendo.Class.extend({
 		viewModel: null,
-        userAuthHash: null,
         logged: false,
         consts: {
             localStorageKeyUsername: "expensesUsername",
             localStorageKeyPassword: "expensesPassword",
+            localStorageUserAuthHash: "userAuthHash",
+            localStorageUserFormDigestValue: "formDigestValue"
         },
         
 		init: function () {
@@ -59,12 +60,16 @@
            app.loginService.signInViewModel.logout(); 
         },
         
-        setUserCredentials: function(username, password, formDigestValue) {
-            localStorage.setItem("formDigestValue", formDigestValue);
+        setUserCredentials: function(username, password,userAuthHash, formDigestValue) {
+            localStorage.setItem(this.consts.localStorageUserFormDigestValue, formDigestValue);
+            localStorage.setItem(this.consts.localStorageUserAuthHash, userAuthHash);
             localStorage.setItem(this.consts.localStorageKeyUsername, username);
             localStorage.setItem(this.consts.localStorageKeyPassword, password);
         },        
         
+        getUserHash: function(){
+        	return localStorage.getItem("userAuthHash");    
+        },
         
         isLogged: function() {
         	return localStorage.getItem("formDigestValue");

@@ -638,7 +638,7 @@ html {
     content: "\f013";
 }
 
-.bills-view .bills-items > li,
+.expenses-view .bills-items > li,
 .notifications-view .notifications-items > li {
     margin-bottom: .1em;
     padding: 0;
@@ -646,13 +646,13 @@ html {
     border-image: none;
 }
 
-.bills-view .bills-items > li:last-child,
+.expenses-view .bills-items > li:last-child,
 .notifications-view .notifications-items > li:last-child {
     -webkit-box-shadow: none;
     box-shadow: none;
 }
 
-.bills-view .bills-items > li > a.km-listview-link,
+.expenses-view .bills-items > li > a.km-listview-link,
 .notifications-view .notifications-items > li > a.km-listview-link {
     position: relative;
     overflow: hidden;
@@ -663,28 +663,28 @@ html {
     background-clip: border-box;
 }
 
-.bills-view .bills-items > li.km-state-active > a.km-listview-link,
+.expenses-view .bills-items > li.km-state-active > a.km-listview-link,
 .notifications-view .notifications-items > li.km-state-active > a.km-listview-link {
     background-color: rgba(0, 0, 0, .3);
 }
 
-.bills-view.ar .bills-items > li > a.km-listview-link,
+.expenses-view.ar .bills-items > li > a.km-listview-link,
 .notifications-view.ar .notifications-items > li > a.km-listview-link {
     padding: .8em 1.25em .8em 2.5em;
 }
 
-.bills-view .bills-items > li > a.km-listview-link.paid,
+.expenses-view .bills-items > li > a.km-listview-link.paid,
 .notifications-view .notifications-items > li > a.km-listview-link.new {
     background-color: rgba(0, 0, 0, .75);
 }
 
-.bills-view .bills-items > li > a.km-listview-link.paid .ds-title,
-.bills-view .bills-items > li > a.km-listview-link.paid .ds-cost,
+.expenses-view .bills-items > li > a.km-listview-link.paid .ds-title,
+.expenses-view .bills-items > li > a.km-listview-link.paid .ds-cost,
 .notifications-view .notifications-items > li > a.km-listview-link.new .ds-title {
     opacity: .5;
 }
 
-.bills-view .bills-items > li > a.km-listview-link:before,
+.expenses-view .bills-items > li > a.km-listview-link:before,
 .notifications-view .notifications-items > li > a.km-listview-link:before {
     position: absolute;
     top: 50%;
@@ -707,13 +707,13 @@ html {
     content: "\f053";
 }
 
-.bills-view.ar .bills-items > li > a.km-listview-link:before,
+.expenses-view.ar .bills-items > li > a.km-listview-link:before,
 .notifications-view.ar .notifications-items > li > a.km-listview-link:before {
     right: auto;
     left: .75em;
 }
 
-.bills-view .ds-icon,
+.expenses-view .ds-icon,
 .bill-details-view .ds-icon,
 .add-bill-view .ds-icon {
     display: block;
@@ -727,11 +727,11 @@ html {
     text-align: center;
 }
 
-.bills-view.ar .ds-icon {
+.expenses-view.ar .ds-icon {
     float: right;
 }
 
-.bills-view .ds-icon .fa,
+.expenses-view .ds-icon .fa,
 .bill-details-view .ds-icon .fa,
 .add-bill-view .ds-icon .fa {
     margin-top: .35em;
