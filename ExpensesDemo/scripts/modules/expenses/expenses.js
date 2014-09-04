@@ -39,7 +39,7 @@
     });
 
     ExpensesViewModel = kendo.data.ObservableObject.extend({
-        viewId: "#bills-view",
+        viewId: "#expenses-view",
         expensesDataSource: null,
 
         //events: {
@@ -105,7 +105,7 @@
                 type: "GET",
                 headers: {
                     "ACCEPT": "application/json;odata=verbose",
-                    "Authorization": "Basic " + app.settingsService.userAuthHash
+                    "Authorization": "Basic " + app.settingsService.getUserHash()
                 },
                 success: $.proxy(that.storeExpenses, that), 
                 error: function errHandler(p1, p2, errMessage) {
