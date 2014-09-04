@@ -1,16 +1,96 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <title></title>
-    <meta charset="utf-8" />
-    <link href="kendo/styles/kendo.mobile.all.min.css" rel="stylesheet" />
+    <head>
+        <title>Dubai Services</title>
+        <meta charset="utf-8" />
+        
+        <link href="lib/font-awesome-4.1.0/css/font-awesome.min.css" rel="stylesheet">
+        <link href="lib/kendo/styles/kendo.dataviz.mobile.min.css" rel="stylesheet" />
+        <link href="lib/kendo/styles/kendo.dataviz.black.min.css" rel="stylesheet" />
+        <link href="styles/main.css" rel="stylesheet" />
+        
+        <script src="cordova.js"></script>
+        <script src="lib/kendo/js/jquery.min.js"></script>
+        <script src="lib/kendo/js/kendo.dataviz.mobile.min.js"></script>
 
-    <script src="cordova.js"></script>
-    <script src="kendo/js/jquery.min.js"></script>
-    <script src="kendo/js/kendo.mobile.min.js"></script>
+             
+        <script src="scripts/config.js"></script>
+        <script src="scripts/common.js"></script>
+        <script src="lib/date/date.js"></script>
+        <script src="scripts/app.js"></script>
+        <script src="scripts/modules/settings/settings.js"></script>
+        <script src="scripts/modules/login/identity-providers.js"></script>
+        <script src="scripts/modules/login/login.js"></script>
+    </head>
+
+    <body style="width: 100%; height: 100%;">
+        <div id="init-view"
+             class="view dashboard-view"
+             data-role="view"
+             data-layout="default"
+             data-stretch="true"
+             data-transition="overlay:up"
+             data-init="app.dashBoardService.initModule"
+             data-show="app.dashBoardService.showModule"
+   			 data-model="app.dashBoardService.viewModel">
+            
+            <div data-role="header">
+                <div data-role="navbar">
+                    <h1 data-bind="visible: isEn">Dashboard</h1>
+                    <h1 data-bind="invisible: isEn">لوحة القيادة</h1>
+                </div>
+            </div>
     
-</head>
-<body>
-    test
-</body>
+            <ul class="dashboard-items">
+                <li>
+                    <a data-role="button" href="scripts/modules/bills/bills.html">
+                        <span class="ds-item">
+                            <span class="ds-icon ds-icon-bills"></span>
+                            <span class="ds-title" data-bind="visible: isEn">Bills</span>
+                            <span class="ds-title" data-bind="invisible: isEn">فواتير</span>
+                        </span>
+                    </a>
+                </li>
+                <li>
+                    <a data-role="button"  href="scripts/modules/notifications/notifications.html">
+                        <span class="ds-item">
+                            <span class="ds-icon ds-icon-notifications">
+                                <span class="ds-badge" data-bind="visible: hasUnread"><span data-bind="text: unreadNotifications"></span></span>
+                            </span>
+                        <span class="ds-title" data-bind="visible: isEn">Notifications</span>
+                        <span class="ds-title" data-bind="invisible: isEn">الإشعارات </span>
+                        </span>
+                    </a>
+                </li>
+                <li>
+                    <a data-role="button" href="scripts/modules/location/location.html">
+                        <span class="ds-item">
+                            <span class="ds-icon ds-icon-centers"></span>
+                            <span class="ds-title" data-bind="visible: isEn">Customer Centers</span>
+                            <span class="ds-title" data-bind="invisible: isEn">مراكز خدمة المتعاملين </span>
+                        </span>
+                    </a>
+                </li>
+                <li>
+                    <a data-role="button" href="scripts/modules/settings/settings.html">
+                        <span class="ds-item">
+                            <span class="ds-icon ds-icon-settings"></span>
+                            <span class="ds-title" data-bind="visible: isEn">Settings</span>
+                            <span class="ds-title" data-bind="invisible: isEn">الإعدادت </span>
+                        </span>
+                    </a>
+                </li>
+            </ul>
+            
+        </div>         
+        
+        <!--Layout-->
+        <div data-role="layout" data-id="drawer-layout">
+            <div data-role="header">
+				<div data-role="navbar">
+					<span data-role="view-title">&nbsp;</span>
+				</div>
+			</div>
+        </div>
+    </body>
 </html>
