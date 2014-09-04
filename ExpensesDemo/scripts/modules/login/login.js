@@ -70,14 +70,13 @@
 
             that._onStart(that.consts.PROVIDER_DEFAULT);
             var bytes = Crypto.charenc.Binary.stringToBytes("ddimitrov" + ":" + "Telerik34");
-        	var base64 = Crypto.util.bytesToBase64(bytes);
-            
+            app.settingsService.userAuthHash = Crypto.util.bytesToBase64(bytes);
             $.ajax({
                 url: "http://enterprisepocs.cloudapp.net/_api/contextinfo",
                 type: "POST",
                 headers: {
                     "ACCEPT": "application/json;odata=verbose",
-                    "Authorization": "Basic " + base64
+                    "Authorization": "Basic " + app.settingsService.userAuthHash
                 },
                 success:$.proxy(that._onSuccess, that, that.consts.PROVIDER_DEFAULT),
                 error: $.proxy(that._onError, that, that.consts.PROVIDER_DEFAULT),
@@ -107,7 +106,6 @@
 
         _onSuccess: function (provider, e) {
             var that = this;
-            console.log(e);
 
             app.common.hideLoading();
             that.set("displayName", that.get("username").trim());

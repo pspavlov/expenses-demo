@@ -20,6 +20,7 @@
     
 	SettingsService = kendo.Class.extend({
 		viewModel: null,
+        userAuthHash: null,
         logged: false,
         consts: {
             localStorageKeyUsername: "expensesUsername",

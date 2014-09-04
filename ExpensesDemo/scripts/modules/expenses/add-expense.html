@@ -10,8 +10,6 @@
 	<div data-role="header">
         <div data-role="navbar">
             <h1 data-bind="visible: isEn">Add Bill</h1>
-            <h1 data-bind="invisible: isEn">إضافة بيل</h1>
-
             <a class="ds-header-button ds-header-back" data-align="left" data-role="backbutton"><i class="fa fa-chevron-left"></i><span>Back</span></a>
 		</div>
 	</div>
@@ -44,38 +42,11 @@
 
     </form>
     
-    <form class="ds-form add-bill-items" data-bind="invisible: isEn">
-        <span class="ds-item-wrp">
-            <span class="ds-title">نوع</span>
-            <span data-role="scroller" class="ds-scroller">
-                <ul class="bills-items"
-                    data-role="listview"
-                    data-bind="source: typesDataSource, events: { click: onTypeChange }"
-                    data-template="bills-template-ar">
-                </ul>
-            </span>
-        </span>
-
-        <span class="ds-item-wrp">
-            <span class="ds-title">الإسم </span>
-            <span class="ds-value">
-                <input class="ds-input" type="text" data-bind="value: name" />
-            </span>
-        </span>
-        
-        <span class="ds-item-wrp">
-            <span class="ds-title">رقم الحسا</span>
-            <span class="ds-value">
-                <input class="ds-input" type="text" data-bind="value: account" />
-            </span>
-        </span>
-    </form>     
         
     <div data-role="footer">
         <div class="ds-navbar" data-role="navbar">
             <a class="ds-button ds-button-large" data-role="button" data-bind="click: onAdd">
                 <span data-bind="visible: isEn">Add</span>
-                <span data-bind="invisible: isEn">دفع</span>
             </a>
 		</div>
 	</div>
@@ -86,15 +57,6 @@
         	</span>
         	<span class="ds-item-content-wrp">
                 <span class="ds-title">#: Title_en #</span>
-            </span>
-    </script>
-    
-    <script id="bills-template-ar" type="text/x-kendo-tmpl">
-    	    <span class="ds-icon ds-icon-#: Icon #">
-				<i class="fa #: Icon #"></i>
-        	</span>
-        	<span class="ds-item-content-wrp">
-                <span class="ds-title">#: Title_ar #</span>
             </span>
     </script>
 </div>

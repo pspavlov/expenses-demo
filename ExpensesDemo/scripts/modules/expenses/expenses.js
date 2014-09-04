@@ -1,103 +1,78 @@
 (function (global) {
-    var Bill,
-        BillsViewModel,
-        BillsService,
+    var Expense,
+        ExpensesViewModel,
+        ExpensesService,
         app = global.app = global.app || {};
 
     app.newLeafData = app.newLeafData || {};
 
-    Bill = kendo.data.ObservableObject.extend({
-        id: null,
-        title: "",
-        title_ar: "",
-        date: "N/A",
-        cost: 0,
+    Expense = kendo.data.ObservableObject.extend({
+        ID: null,
+        Title: "",
+        Approved: false,
         icon: "",
         color: "",
         billClass: "",
-        history: "",
 
         init: function (item) {
             var that = this;
 
-            that.id = item.Id;
+            that.ID = item.ID;
 
-            if (item.Type) {
-                that.icon = item.Type.Icon;
-                that.color = item.Type.Color;
-            }
-            that.title = item.Title;
-            that.title_ar = item.Title_ar;
+            //if (item.Type) {
+            //    that.icon = item.Type.Icon;
+            //    that.color = item.Type.Color;
+            //}
+            that.Title = item.Title;
 
-            if (item.History.length > 0) {
-                that.date = new Date(item.History[item.History.length - 1].EndDate).format("mmm dd, yyyy");
-            }
 
-            that.setCost(item.History);
+            //that.setCost(item.History);
 
-            if (that.cost === 0) {
+            //if (that.cost === 0) {
                 that.billClass = "paid";
-            }
+            //}
 
-            that.history = item.History;
+            //that.history = item.History;
 
             kendo.data.ObservableObject.fn.init.apply(that, that);
         },
-
-        setCost: function (history) {
-            var that = this;
-
-            for (var i = 0, l = history.length; i < l; i++) {
-                if (!history[i].Paid) {
-                    that.cost += history[i].Cost;
-                }
-            }
-        }
     });
 
-    BillsViewModel = kendo.data.ObservableObject.extend({
+    ExpensesViewModel = kendo.data.ObservableObject.extend({
         viewId: "#bills-view",
-        billsDataSource: null,
-        totalCost: 0,
-        isEn: true,
-        showPay: false,
+        expensesDataSource: null,
 
-        events: {
-            payAll: "payAll"
-        },
+        //events: {
+        //    payAll: "payAll"
+        //},
 
         init: function () {
             var that = this;
 
-            that.billsDataSource = new kendo.data.DataSource({
+            that.expensesDataSource = new kendo.data.DataSource({
                 pageSize: 10
             });
 
             kendo.data.ObservableObject.fn.init.apply(that, that);
         },
 
-        onPayAllClick: function () {
-            var that = this;
+        //onPayAllClick: function () {
+        //    var that = this;
 
-            that.trigger(that.events.payAll, {
-                billsToPay: that.get("billsDataSource").data()
-            });
-        }
+        //    that.trigger(that.events.payAll, {
+        //        billsToPay: that.get("billsDataSource").data()
+        //    });
+        //}
     });
 
 
-    BillsService = kendo.Class.extend({
+    ExpensesService = kendo.Class.extend({
         viewModel: null,
-
-        expandExp: {
-            "History": true,
-            "Type": true,
-        },
 
         init: function () {
             var that = this;
 
-            that.viewModel = new BillsViewModel();
+            that.viewModel = new ExpensesViewModel();
             that._bindToEvents();
 
             that.initModule = $.proxy(that._initModule, that);
@@ -105,9 +80,9 @@
         },
 
         _bindToEvents: function () {
-            var that = this;
+            //var that = this;
 
-            that.viewModel.bind(that.viewModel.events.payAll, $.proxy(that.onPayAll, that));
+           //that.viewModel.bind(that.viewModel.events.payAll, $.proxy(that.onPayAll, that));
         },
 
         _initModule: function () {
@@ -115,90 +90,94 @@
         },
 
         _showModule: function () {
-            var that = this,
-                language = app.settingsService.getLanguage();
-
+            var that = this;
             app.common.showLoading();
-
             that.viewModel.$view = $(that.viewModel.viewId);
-            that.viewModel.$view.removeClass("en ar").addClass(language);
-            that.viewModel.set("isEn", language === "en");
-
-            that.getBillsData();
+            that.getExpensesData();
         },
 
-        getBillsData: function () {
+        getExpensesData: function () {
             var that = this;
 
-            return app.everlive.data("Bill").expand(that.expandExp).get()
-                .then($.proxy(that.storeBills, that));
+            
+            $.ajax({
+                url: "http://enterprisepocs.cloudapp.net/_api/web/lists/getByTitle('Expenses')/items",
+                type: "GET",
+                headers: {
+                    "ACCEPT": "application/json;odata=verbose",
+                    "Authorization": "Basic " + app.settingsService.userAuthHash
+                },
+                success: $.proxy(that.storeExpenses, that), 
+                error: function errHandler(p1, p2, errMessage) {
+                    console.log("fail! : " + errMessage);
+                },
+                xhrFields: {
+                    withCredentials: true
+                },
+                dataType: 'json',
+                crossDomain: true
+            });
+            
+            
+            
+            
+            //return app.everlive.data("Bill").expand(that.expandExp).get()
+            //    .then($.proxy(that.storeBills, that));
         },
 
-        storeBills: function (data) {
+        storeExpenses: function (data) {
             var that = this,
-                newBill,
-                totalCost = 0,
+                newExpense,
                 ds = [];
 
-            for (var i = 0, l = data.result.length; i < l; i++) {
-                newBill = new Bill(data.result[i]);
-
-                if (newBill.cost !== 0) {
-                    totalCost += newBill.cost;
-                }
-
-
-                ds.push(newBill);
+            for (var i = 0; i < data.d.results.length; i++) {
+                newExpense = new Expense(data.d.results[i]);
+                ds.push(newExpense);
             }
 
-            if (totalCost !== 0) {
-                that.viewModel.set("showPay", true);
-            }
-
-            that.viewModel.set("totalCost", totalCost);
-            that.viewModel.get("billsDataSource").data(ds);
+            that.viewModel.get("expensesDataSource").data(ds);
             app.common.hideLoading();
         },
 
-        onPayAll: function (data) {
-            var that = this;
+        //onPayAll: function (data) {
+        //    var that = this;
 
-            if(that.viewModel.get("isEn")) {
-           		app.common.showLoading("Payment proceeding. This might take a couple of minutes");
-            } else {
-                app.common.showLoading("دفع الدعوى. وهذا قد يستغرق بضع دقائق");
-            }
+        //    if(that.viewModel.get("isEn")) {
+        //   		app.common.showLoading("Payment proceeding. This might take a couple of minutes");
+        //    } else {
+        //        app.common.showLoading("دفع الدعوى. وهذا قد يستغرق بضع دقائق");
+        //    }
 
-            app.paymentService.pay(data.billsToPay)
-                .then($.proxy(that.paymentCompleted, that));
-        },
+        //    app.paymentService.pay(data.billsToPay)
+        //        .then($.proxy(that.paymentCompleted, that));
+        //},
 
-        paymentCompleted: function (data) {
-            var that = this,
-                bills = that.viewModel.get("billsDataSource").data();
+        //paymentCompleted: function (data) {
+        //    var that = this,
+        //        bills = that.viewModel.get("billsDataSource").data();
 
-            if (data.state === "approved") {
-                for (var i = 0, l = bills.length; i < l; i++) {
-                    for (var j = 0, ll = bills[i].history.length; j < ll; j++) {
-                        if (!bills[i].history[j].Paid) {
-                            app.everlive.data("BillHistory").updateSingle({
-                                Id: bills[i].history[j].Id,
-                                "Paid": true
-                            });
-                        }
-                    }
-                }
+        //    if (data.state === "approved") {
+        //        for (var i = 0, l = bills.length; i < l; i++) {
+        //            for (var j = 0, ll = bills[i].history.length; j < ll; j++) {
+        //                if (!bills[i].history[j].Paid) {
+        //                    app.everlive.data("BillHistory").updateSingle({
+        //                        Id: bills[i].history[j].Id,
+        //                        "Paid": true
+        //                    });
+        //                }
+        //            }
+        //        }
 
-                app.common.notification("Payment completed", "Payment Completed");
-                that.getBillsData();
-                app.common.hideLoading();
-                this.viewModel.set("showPay", false);
-            } else {
-                app.common.notification("Payment failed", "Payment failed");
-                app.common.hideLoading();
-            }
-        }
+        //        app.common.notification("Payment completed", "Payment Completed");
+        //        that.getBillsData();
+        //        app.common.hideLoading();
+        //        this.viewModel.set("showPay", false);
+        //    } else {
+        //        app.common.notification("Payment failed", "Payment failed");
+        //        app.common.hideLoading();
+        //    }
+        //}
     });
 
-    app.billsService = new BillsService();
+    app.expensesService = new ExpensesService();
 })(window);

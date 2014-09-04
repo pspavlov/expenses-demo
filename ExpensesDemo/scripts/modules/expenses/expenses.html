@@ -1,69 +1,47 @@
 <div id="bills-view"
      class="view bills-view"
      data-role="view"
-	 data-init="app.billsService.initModule"
-     data-show="app.billsService.showModule"
-	 data-model="app.billsService.viewModel"
+	 data-init="app.expensesService.initModule"
+     data-show="app.expensesService.showModule"
+	 data-model="app.expensesService.viewModel"
      data-layout="drawer-layout"
      data-transition="overlay:left">
     
 	<div data-role="header">
         <div data-role="navbar">
-            <h1 data-bind="visible: isEn">Bills</h1>
-            <h1 data-bind="invisible: isEn">فواتير</h1>
+            <h1>Expenses</h1>
             <a class="ds-header-button ds-header-back" data-align="left" data-role="backbutton"><i class="fa fa-chevron-left"></i><span>Back</span></a>
-            <a class="ds-header-button ds-header-add" data-align="right" data-role="button" href="scripts/modules/bills/add-bill.html"><i class="fa fa-plus"></i><span>Add</span></a>
+            <a class="ds-header-button ds-header-add" data-align="right" data-role="button" href="scripts/modules/expenses/add-expense.html"><i class="fa fa-plus"></i><span>Add</span></a>
 		</div>
 	</div>
     
     <ul class="bills-items"
         data-role="listview"
-        data-bind="source: billsDataSource, visible: isEn"
-		data-template="bills-template">       
-    </ul>
-    
-    <ul class="bills-items"
-        data-role="listview"
-        data-bind="source: billsDataSource, invisible: isEn"
-		data-template="bills-template-ar">       
-    </ul>
+        data-bind="source: expensesDataSource"
+		data-template="expenses-template">       
+    </ul>    
 
-    <div data-role="footer" data-bind="visible: showPay">
+    <!--<div data-role="footer" data-bind="visible: showPay"> //to be reused for approve
         <div data-role="navbar">
             <a class="ds-button ds-button-large ds-button-pay" data-role="button" data-bind="click: onPayAllClick">
                 <span class="ds-title" data-bind="visible: isEn">Pay all</span>
-                <span class="ds-title" data-bind="invisible: isEn">دفع الجميع</span>
                 <span class="ds-cost">
                     <span data-bind="text: totalCost"></span>
                     <span>$</span>
                 </span>
             </a>
 		</div>
-	</div>
+	</div> -->
     
-    <script id="bills-template" type="text/x-kendo-tmpl">
-    	<a class="cf #: billClass #" href="scripts/modules/bills/bill-details.html?dataId=#: id #">
+    <script id="expenses-template" type="text/x-kendo-tmpl">
+    	<a class="cf #: billClass #" href="scripts/modules/expenses/expenses-details.html?dataId=#: ID #">
         	<span class="ds-icon ds-icon-#: icon #">
 				<i class="fa #: icon #"></i>
         	</span>
         	<span class="ds-item-content-wrp">
-                <span class="ds-title">#: title #</span>
-        		<span class="ds-date ds-small">#: date #</span>
-            </span>
-            <span class="ds-cost">#: cost # $</span>
+                <span class="ds-title">#: Title #</span>        		
+            </span>            
     	</a>
     </script>
 
-        <script id="bills-template-ar" type="text/x-kendo-tmpl">
-    	<a class="cf #: billClass #" href="scripts/modules/bills/bill-details.html?dataId=#: id #">
-        	<span class="ds-icon ds-icon-#: icon #">
-				<i class="fa #: icon #"></i>
-        	</span>
-        	<span class="ds-item-content-wrp">
-                <span class="ds-title">#: title_ar #</span>
-        		<span class="ds-date ds-small">#: date #</span>
-            </span>
-            <span class="ds-cost">#: cost # $</span>
-    	</a>
-    </script>
 </div>
