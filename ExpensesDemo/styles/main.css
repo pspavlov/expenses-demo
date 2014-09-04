@@ -1,0 +1,1005 @@
+.cf {
+    zoom: 1;
+}
+
+.cf:before,
+.cf:after {
+    display: table;
+    content: '';
+}
+
+.cf:after {
+    clear: both;
+}
+
+html {
+    background-color: #131519;
+}
+
+.km-ios7 .km-view.view,
+.km-ios7 .km-view .km-header,
+.km-ios7 .km-view .km-footer {
+    background: #131519 url("images/background-main.png") no-repeat 0 0;
+    background-size: 100%;
+}
+
+.km-ios7 .km-view.signup-view .km-header {
+    background: none;
+    background-color: transparent;
+}
+
+::-webkit-input-placeholder {
+   color: rgba(255, 255, 255, .35);
+}
+
+.km-ios7 .km-view .km-header,
+.km-ios7 .km-view .km-navbar,
+.km-ios7 .km-view .km-footer,
+.km-ios7, .km-ios7.km-pane .km-content {
+    background-color: transparent;
+}
+
+.km-ios7 .km-view .km-navbar {
+    border: 0 none;
+    background-image: none;
+}
+
+.km-ios7 .k-list,
+.km-ios7 .k-slider,
+.km-ios7 .km-widget {
+    color: #274c65;
+}
+
+.km-ios7.km-pane > .km-loader,
+.km-ios7 .km-pane > .km-loader {
+    background: rgba(0, 0, 0, .7) url("images/loading.gif") no-repeat 50% 50%;
+}
+
+.km-ios7.km-pane > .km-loader h1,
+.km-ios7 .km-pane > .km-loader h1 {
+    margin: 3em 0 0;
+    color: #fff;
+    text-shadow: none;
+}
+
+@media
+(-webkit-min-device-pixel-ratio: 2),
+(min-resolution: 144dpi) {
+    background-image: url("images/loading@2x.gif");
+    background-size: 32px 32px;
+}
+
+.km-ios7.km-pane > .km-loader > span,
+.km-ios7 .km-pane > .km-loader > span {
+    display: none;
+}
+
+.km-ios7,
+.km-ios7.km-pane .km-content,
+.km-ios7 .km-view .km-content p,
+.km-ios7 .km-view .km-content a,
+.km-ios7 .km-view .km-footer.ds-footer p {
+    color: #fff;
+}
+
+.km-ios7 .km-view .km-footer.ds-footer {
+    margin-top: -50px;
+    height: 50px;
+    background-color: rgba(255, 0, 0, .35);
+}
+
+.km-on-ios.km-black-translucent-status-bar.km-app .km-header .km-navbar {
+    padding-top: 0;
+}
+
+.km-ios7 .km-listview-link:after {
+    display: none;
+}
+
+.km-ios7.km-pane .km-content h1 {
+    text-align: center;
+    font-weight: normal;
+}
+
+.km-ios7 .km-view .km-footer.ds-footer p,
+.km-ios7 .km-view .km-content p,
+.km-ios7 .km-view .km-content a {
+    font-size: 1em;
+}
+
+.km-ios7 .km-view .km-content p,
+.km-ios7 .km-view .km-footer.ds-footer p {
+    margin: 1.9em 0 0 0;
+    text-align: left;
+}
+
+.km-ios7 .km-view .km-content p {
+    line-height: 1.5;
+}
+
+.km-ios7 .km-view .km-footer.ds-footer p {
+    margin: 0;
+}
+
+.km-ios7 .km-view .km-content p.ds-center-text {
+    text-align: center;
+}
+
+.km-ios7 .km-view .km-content a {
+    text-decoration: none;
+}
+
+.km-ios7 .km-navbar .km-leftitem {
+    left: 0;
+}
+
+.km-ios7 .ar .km-navbar .km-leftitem {
+    right: 0;
+    left: auto;
+}
+
+.km-ios7 .km-navbar .km-rightitem {
+    right: 0;
+}
+
+.km-ios7 .ar .km-navbar .km-rightitem {
+    right: auto;
+    left: 0;
+}
+
+.km-ios7 .ar .km-navbar .km-button.ds-header-back .fa-chevron-left:before {
+    content: "\f054";
+}
+
+.km-ios7 .km-navbar .km-button.ds-header-button {
+    margin: 0;
+    padding: 0;
+    width: 44px;
+    height: 44px;
+    background-color: transparent;
+    background-image: none;
+    color: #fff;
+    text-align: center;
+    line-height: 44px;
+}
+
+.km-ios7 .km-navbar .km-button.ds-header-button.km-state-active {
+    color: rgba(255, 255, 255, .75);
+}
+
+.km-ios7 .km-navbar .km-button.ds-header-button span,
+.km-ios7 .km-navbar .km-button.ds-header-button:before,
+.km-ios7 .km-back:before {
+    display: none !important;
+}
+
+.km-ios7 .km-view .km-button.ds-button,
+.km-ios7 .km-view .km-content input.ds-input {
+    -webkit-border-radius: .2em;
+    border-radius: .2em;
+    background-image: none;
+}
+
+.km-ios7 .km-view .km-button.ds-button,
+.km-ios7 .km-view input.km-button.ds-button {
+    overflow: hidden;
+    margin: 0 0 .3em;
+    padding: .6em .8em;
+    height: 2.5em;
+    border: 0 none;
+    border-bottom: 1px solid #004d40;
+    background-color: #329363;
+    color: #fff;
+    text-decoration: none;
+    font-weight: normal;
+    font-size: 1.35em;
+    font-family: "HelveticaNeue Ultra Light", "Roboto Light", "Slate Light", "Segoe WP", NokiaPureTextLight, sans-serif;
+}
+
+.km-ios7 .km-view .km-button.ds-button.km-state-hover {
+    background-color: #4db07f;
+}
+
+.km-ios7 .km-view .km-button.ds-button.km-state-active {
+    background-color: #1e7449;
+}
+
+.km-ios7 .km-view .km-button.ds-button.km-state-disabled {
+    background-color: #81c342;
+}
+
+.km-ios7 .km-view .km-button.ds-button.ds-button-logout {
+    margin-top: 1em;
+    border-color: #93180f;
+    background-color: #cd2f23;
+}
+
+.km-ios7 .km-view .km-button.ds-button.ds-button-large {
+    width: 100%;
+}
+
+.km-ios7 .km-view .km-button.ds-button.ds-button-center {
+    text-align: center;
+}
+
+.km-ios7 .km-view .km-button.ds-button-regular {
+    border: 0 none;
+    background-color: transparent;
+    background-image: none;
+}
+
+.km-ios7 .km-view .km-button.ds-button-regular.km-state-active {
+    background-color: transparent;
+}
+
+.km-ios7 .km-view .km-footer .km-button.ds-button {
+    margin-bottom: 0;
+    font-size: 1.15em;
+}
+
+.km-ios7 .km-view .km-footer a.km-button.ds-button {
+    padding: .1em .8em;
+}
+
+.km-ios7 .km-view .km-footer .km-button.ds-button .ds-title {
+    float: left;
+}
+
+.km-ios7 .km-view.ar .km-footer .km-button.ds-button .ds-title {
+    float: right;
+}
+
+.km-ios7 .km-view .km-footer .km-button.ds-button .ds-cost {
+    float: right;
+}
+
+.km-ios7 .km-view.ar .km-footer .km-button.ds-button .ds-cost {
+    float: left;
+}
+
+.km-ios7 .km-view .km-content input.ds-input {
+    display: block;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    margin-bottom: .3em;
+    padding: .6em .8em .5em;
+    width: 100%;
+    border: 2px solid transparent;
+    background-color: rgba(0, 0, 0, .5);
+    -webkit-background-clip: border-box;
+    background-clip: border-box;
+    color: #fff;
+    font-size: 1.35em;
+    font-family: "HelveticaNeue Ultra Light", "Roboto Light", "Slate Light", "Segoe WP", NokiaPureTextLight, sans-serif;
+    -webkit-appearance: none;
+}
+
+.km-ios7 .km-view.ar .km-content input.ds-input {
+    text-align: right;
+}
+
+.ds-input-wrp {
+    position: relative;
+    display: block;
+}
+
+.km-ios7 .km-view .km-content .ds-icon input.ds-input {
+    padding-left: 2.5em;
+}
+
+.km-ios7 .km-view.ar .km-content .ds-icon input.ds-input {
+    padding-right: 2.5em;
+    padding-left: .8em;
+}
+
+.ds-icon:before {
+    position: absolute;
+    top: 50%;
+    left: .35em;
+    display: block;
+    margin-top: -.5em;
+    width: 1em;
+    height: 1em;
+    color: #fff;
+    content: "";
+    font-size: 2em;
+    font-family: FontAwesome;
+    opacity: .8;
+}
+
+.ar .ds-icon:before {
+    right: .35em;
+    left: auto;
+}
+
+.ds-icon.ds-username:before {
+    content: "\f007";
+}
+
+.ds-icon.ds-password:before {
+    content: "\f023";
+}
+
+.ds-icon.ds-email:before {
+    content: "\f003";
+}
+
+.km-ios7 .km-view .km-content input.ds-input:focus {
+    -webkit-box-shadow: 0 0 7px 0 rgba(255, 255, 255, .5);
+    box-shadow: 0 0 7px 0 rgba(255, 255, 255, .5);
+}
+
+/* header styles */
+.km-ios7 .km-view .km-header .km-view-title {
+    background-image: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+
+.km-ios7 .km-view .km-header h1 {
+    margin: 0;
+    color: #fff;
+    font-weight: normal;
+    font-size: 1.35em;
+}
+
+/* footer styles */
+.km-ios7 .km-view .km-footer {
+    background-position: 0 100%;
+}
+
+.km-ios7 .km-view .km-footer .km-view-title {
+    padding: .65em .65em 0;
+}
+
+/* form styles */
+.ds-form {
+    margin: 1em .65em;
+    text-align: center;
+}
+
+.signin-view .ds-content-wrp,
+.signup-view .ds-content-wrp,
+.settings-view .ds-content-wrp {
+    background: transparent url("images/background-city.png") no-repeat 50% -2.5em;
+    background-size: 125%;
+}
+
+.km-ios7.km-horizontal .signin-view .ds-content-wrp,
+.km-ios7.km-horizontal .signup-view .ds-content-wrp,
+.km-ios7.km-horizontal .settings-view .ds-content-wrp {
+    background-position: 50% 50%;
+    background-size: 100%;
+}
+
+.signin-view h1,
+.settings-view h1 {
+    font-size: 2.35em;
+}
+
+.signin-view .ds-form {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    left: 0;
+    margin-top: -7em;
+    height: 14em;
+}
+
+.km-tablet .km-ios7 .signin-view .ds-form .ds-input-wrp,
+.km-tablet .km-ios7 .signin-view .ds-form .km-button.ds-button,
+.km-tablet .km-ios7 .signup-view .ds-form .ds-input-wrp,
+.km-tablet .km-ios7 .signup-view .ds-form .km-button.ds-button {
+    margin-right: auto;
+    margin-left: auto;
+    width: 70%;
+}
+
+.km-tablet .km-ios7.km-horizontal .signin-view .ds-form .ds-input-wrp,
+.km-tablet .km-ios7.km-horizontal .signin-view .ds-form .km-button.ds-button,
+.km-tablet .km-ios7.km-horizontal .signup-view .ds-form .ds-input-wrp,
+.km-tablet .km-ios7.km-horizontal .signup-view .ds-form .km-button.ds-button {
+    width: 50%;
+}
+
+.km-phone .km-ios7.km-horizontal .signin-view .ds-form {
+    top: auto;
+    bottom: 1em;
+    margin-top: 0;
+}
+
+.km-ios7 .km-view.signin-view .ds-form p {
+    margin: 0;
+}
+
+.km-ios7.km-horizontal .signin-view .ds-form .ds-input-wrp {
+    display: inline-block;
+    width: 50%;
+}
+
+.km-ios7.km-horizontal .signin-view .ds-form .ds-input-wrp.ds-username {
+    margin-left: 0;
+}
+
+.km-ios7.km-horizontal .signin-view .ds-form .ds-input-wrp.ds-password {
+    margin-right: 0;
+}
+
+.km-ios7.km-horizontal .signin-view .ds-form .ds-button {
+    width: 50%;
+}
+
+.km-ios7.km-horizontal .signin-view .ds-form p.ds-center-text a,
+.km-tablet .km-ios7 .signin-view .ds-form p.ds-center-text a {
+    color: #000;
+    text-shadow: 0 0 2px #fff;
+    font-weight: bold;
+}
+
+/* sign up view styles */
+.signup-view {
+    position: relative;
+}
+
+.signup-view > .km-content {
+    margin-top: -4em;
+}
+
+.signup-view .ds-form {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    left: 0;
+    margin-top: -9em;
+    height: 18em;
+}
+
+/*.km-tablet .signup-view .ds-form .ds-input-wrp,
+.km-tablet .signup-view .ds-form .km-button.ds-button {
+    margin-right: auto;
+    margin-left: auto;
+    width: 50%;
+}*/
+
+.km-phone .km-ios7.km-horizontal .signup-view .ds-form {
+    margin-top: -5em;
+    height: 11em;
+}
+
+.km-phone .km-ios7.km-horizontal .signup-view .ds-form .ds-input-wrp {
+    float: left;
+    width: 48.5%;
+}
+
+.km-phone .km-ios7.km-horizontal .signup-view .ds-form .ds-input-wrp.ds-username,
+.km-phone .km-ios7.km-horizontal .signup-view .ds-form .ds-input-wrp.ds-password {
+    margin-right: 1.5%;
+}
+
+.km-phone .km-ios7.km-horizontal .signup-view .ds-form .ds-input-wrp.ds-email,
+.km-phone .km-ios7.km-horizontal .signup-view .ds-form .ds-input-wrp.ds-retype-password {
+    margin-right: 0;
+    margin-left: 1.5%;
+}
+
+.km-ios7.km-horizontal .signup-view .ds-form .ds-button {
+    display: inline-block;
+    width: 50%;
+}
+
+.settings-view .ds-langs,
+.app-settings-view .ds-langs {
+    margin: 0;
+    padding: 0;
+}
+
+.settings-view .ds-langs {
+    position: absolute;
+    top: 50%;
+    right: .65em;
+    left: .65em;
+    margin-top: -1.65em;
+    height: 3.3em;
+}
+
+.km-phone .km-ios7.km-horizontal .app-settings-view .ds-langs,
+.km-tablet .km-ios7 .settings-view .ds-langs,
+.km-tablet .km-ios7 .app-settings-view .ds-langs {
+    margin: 0 auto;
+    width: 50%;
+}
+
+.app-settings-view .ds-langs {
+    padding: 0 .65em;
+}
+
+.settings-view .ds-langs li,
+.app-settings-view .ds-langs li {
+    list-style-type: none;
+}
+
+.settings-view .ds-langs li {
+    float: left;
+    width: 48%;
+}
+
+.settings-view .ds-langs li:last-child {
+    float: right;
+}
+
+/* dashboard view styles */
+.dashboard-view .dashboard-items {
+    margin: 0 -1px;
+    padding: 0;
+}
+
+.dashboard-view .dashboard-items > li {
+    float: left;
+    margin: .35% .35%;
+    padding: 0;
+    width: 49.25%;
+    color: #fff;
+    list-style-type: none;
+}
+
+.km-ios7.km-horizontal .dashboard-view .dashboard-items > li {
+    width: 24.3%;
+}
+
+.dashboard-view.ar .dashboard-items > li {
+    float: right;
+}
+
+.dashboard-view .dashboard-items > li > a {
+    position: relative;
+    display: block;
+    overflow: hidden;
+    margin: 0;
+    height: 160px;
+    border: 0 none;
+    -webkit-border-radius: 0;
+    border-radius: 0;
+    background-color: rgba(0, 0, 0, .3) !important;
+    background-image: none !important;
+    text-align: center;
+}
+
+.dashboard-view .dashboard-items .ds-icon,
+.dashboard-view .dashboard-items .ds-title {
+    position: absolute;
+    right: .5em;
+    left: .5em;
+}
+
+.dashboard-view .dashboard-items .ds-icon {
+    top: 50%;
+    left: 50%;
+    margin: -3.5em 0 0 -3em;
+    width: 6em;
+    height: 5em;
+}
+
+.dashboard-view .dashboard-items .ds-badge {
+    position: absolute;
+    top: .55em;
+    right: 0;
+    min-width: 1.35em;
+    height: 1.35em;
+    -webkit-border-radius: .675em;
+    border-radius: .675em;
+    background-color: #f44336;
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.25em;
+    line-height: 1.4em;
+}
+
+.dashboard-view .dashboard-items .ds-badge span {
+    padding: 0 .35em;
+}
+
+.dashboard-view .dashboard-items .ds-title {
+    bottom: .65em;
+    font-size: 1.25em;
+}
+
+.dashboard-view .dashboard-items .ds-title {
+    bottom: .65em;
+    font-size: 1.25em;
+}
+
+.dashboard-view .dashboard-items .ds-icon:before {
+    left: 50%;
+    margin-top: -.6em;
+    margin-left: -.75em;
+    width: 1.5em;
+    height: 1.5em;
+    font-size: 3.75em;
+    line-height: 1.5em;
+    opacity: 1;
+}
+
+.dashboard-view .dashboard-items .ds-icon.ds-icon-bills:before {
+    content: "\f09d";
+}
+
+.dashboard-view .dashboard-items .ds-icon.ds-icon-notifications:before {
+    content: "\f003";
+    line-height: 1.45em;
+}
+
+.dashboard-view .dashboard-items .ds-icon.ds-icon-centers:before {
+    margin-top: -.85em;
+    content: "\f041";
+}
+
+.dashboard-view .dashboard-items .ds-icon.ds-icon-settings:before {
+    margin-top: -.75em;
+    content: "\f013";
+}
+
+.bills-view .bills-items > li,
+.notifications-view .notifications-items > li {
+    margin-bottom: .1em;
+    padding: 0;
+    border-width: 0;
+    border-image: none;
+}
+
+.bills-view .bills-items > li:last-child,
+.notifications-view .notifications-items > li:last-child {
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+
+.bills-view .bills-items > li > a.km-listview-link,
+.notifications-view .notifications-items > li > a.km-listview-link {
+    position: relative;
+    overflow: hidden;
+    margin: 0;
+    padding: .8em 2.5em .8em 1.25em;
+    background-color: rgba(0, 0, 0, .3);
+    -webkit-background-clip: border-box;
+    background-clip: border-box;
+}
+
+.bills-view .bills-items > li.km-state-active > a.km-listview-link,
+.notifications-view .notifications-items > li.km-state-active > a.km-listview-link {
+    background-color: rgba(0, 0, 0, .3);
+}
+
+.bills-view.ar .bills-items > li > a.km-listview-link,
+.notifications-view.ar .notifications-items > li > a.km-listview-link {
+    padding: .8em 1.25em .8em 2.5em;
+}
+
+.bills-view .bills-items > li > a.km-listview-link.paid,
+.notifications-view .notifications-items > li > a.km-listview-link.new {
+    background-color: rgba(0, 0, 0, .75);
+}
+
+.bills-view .bills-items > li > a.km-listview-link.paid .ds-title,
+.bills-view .bills-items > li > a.km-listview-link.paid .ds-cost,
+.notifications-view .notifications-items > li > a.km-listview-link.new .ds-title {
+    opacity: .5;
+}
+
+.bills-view .bills-items > li > a.km-listview-link:before,
+.notifications-view .notifications-items > li > a.km-listview-link:before {
+    position: absolute;
+    top: 50%;
+    right: .5em;
+    display: block;
+    margin-top: -.625em;
+    width: 1.25em;
+    height: 1.25em;
+    color: rgba(255, 255, 255, .3) !important;
+    content: "\f06a";
+    font-family: FontAwesome;
+    line-height: 1.25em;
+}
+
+.notifications-view .notifications-items > li > a.km-listview-link:before {
+    content: "\f054";
+}
+
+.notifications-view.ar .notifications-items > li > a.km-listview-link:before {
+    content: "\f053";
+}
+
+.bills-view.ar .bills-items > li > a.km-listview-link:before,
+.notifications-view.ar .notifications-items > li > a.km-listview-link:before {
+    right: auto;
+    left: .75em;
+}
+
+.bills-view .ds-icon,
+.bill-details-view .ds-icon,
+.add-bill-view .ds-icon {
+    display: block;
+    float: left;
+    width: 2.25em;
+    height: 2.25em;
+    border-width: 2px;
+    border-style: solid;
+    -webkit-border-radius: 1.125em;
+    border-radius: 1.125em;
+    text-align: center;
+}
+
+.bills-view.ar .ds-icon {
+    float: right;
+}
+
+.bills-view .ds-icon .fa,
+.bill-details-view .ds-icon .fa,
+.add-bill-view .ds-icon .fa {
+    margin-top: .35em;
+    font-size: 1.25em;
+}
+
+.bill-details-view .ds-icon,
+.add-bill-view .ds-icon {
+    display: none;
+    float: left;
+    width: 4em;
+    height: 4em;
+    -webkit-border-radius: 2em;
+    border-radius: 2em;
+}
+
+.add-bill-view .ds-icon {
+    width: 2em;
+    height: 2em;
+    -webkit-border-radius: 1em;
+    border-radius: 1em;
+}
+
+.bill-details-view.ar .ds-icon,
+.add-bill-view.ar .ds-icon {
+    float: right;
+}
+
+.bill-details-view .ds-icon .fa,
+.add-bill-view .ds-icon .fa {
+    margin-top: .35em;
+    font-size: 2.25em;
+}
+
+.add-bill-view .ds-icon .fa {
+    margin-top: .25em;
+    font-size: 1.15em;
+}
+
+.ds-icon.ds-icon-fa-bolt,
+.ds-icon.ds-icon-fa-spinner,
+.ds-icon.ds-icon-fa-home,
+.ds-icon.ds-icon-fa-recycle,
+.ds-icon.ds-icon-fa-tint,
+.ds-icon.ds-icon-fa-ellipsis-h {
+    display: block;
+}
+
+/* Electricity icon wrapper */
+.ds-icon.ds-icon-fa-bolt {
+    border-color: #ffb84d;
+    color: #ffb84d;
+}
+
+/* Cooling Chanrges icon wrapper */
+.ds-icon.ds-icon-fa-spinner {
+    border-color: #2bbeff;
+    color: #2bbeff;
+}
+
+/* Housing Fee icon wrapper */
+.ds-icon.ds-icon-fa-home {
+    border-color: #7db542;
+    color: #7db542;
+}
+
+/* Sewerage Fee icon wrapper */
+.ds-icon.ds-icon-fa-recycle {
+    border-color: #7987cc;
+    color: #7987cc;
+}
+
+/* Water icon wrapper */
+.ds-icon.ds-icon-fa-tint {
+    border-color: #81d4fa;
+    color: #81d4fa;
+}
+
+/* Other Charges icon wrapper */
+.ds-icon.ds-icon-fa-ellipsis-h {
+    border-color: #51c2b7;
+    color: #51c2b7;
+}
+
+.ds-item-content-wrp {
+    float: left;
+    margin-top: -.35em;
+    margin-left: .75em;
+    width: 50%;
+}
+
+.add-bill-view .ds-item-content-wrp {
+    margin-top: .25em;
+}
+
+.ar .ds-item-content-wrp {
+    float: right;
+    margin-right: .75em;
+    margin-left: 0;
+}
+
+.notifications-view .ds-item-content-wrp,
+.notifications-view.ar .ds-item-content-wrp {
+    margin-right: 0;
+    margin-left: 0;
+    width: auto;
+}
+
+.ds-item-content-wrp .ds-title,
+.ds-item-content-wrp .ds-date {
+    display: block;
+    font-size: .85em;
+}
+
+.ar .ds-item-content-wrp .ds-title,
+.ar .ds-item-content-wrp .ds-date {
+    text-align: right;
+}
+
+.ds-small,
+.ds-item-content-wrp .ds-date,
+.bill-details-items .ds-title,
+.add-bill-items .ds-title {
+    font-size: .65em;
+    line-height: 1.5;
+    opacity: .5;
+}
+
+.add-bill-items .ds-scroller {
+    display: block;
+    margin-top: .75em;
+    height: 10em;
+    border-bottom: 1px solid rgba(255, 255, 255, .2);
+}
+
+.km-ios7.km-horizontal .add-bill-items .ds-scroller {
+    height: 6.75em;
+}
+
+.add-bill-items .ds-scroller .bills-items > li {
+    padding-left: 0;
+    border-image: none;
+}
+
+.add-bill-items .ds-scroller .bills-items > li:last-child {
+    border-bottom: 0 none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+
+.bills-items .ds-cost {
+    display: inline-block;
+    float: right;
+    height: 2em;
+    font-size: 1.2em;
+    line-height: 2em;
+}
+
+.ar .bills-items .ds-cost {
+    float: left;
+}
+
+.km-ios7 .km-view a.leaflet-control-zoom-in,
+.km-ios7 .km-view a.leaflet-control-zoom-out {
+    color: #000;
+    font-size: 1.5em;
+}
+
+.bill-details-items {
+    margin-left: 1.25em;
+}
+
+.ar .bill-details-items {
+    margin-right: 1.25em;
+    margin-left: 0;
+}
+
+.bill-details-items .ds-item-wrp,
+.bill-details-items .ds-title,
+.bill-details-items .ds-value,
+.add-bill-items .ds-item-wrp,
+.add-bill-items .ds-title,
+.add-bill-items .ds-value {
+    display: block;
+}
+
+.bill-details-items .ds-item-wrp,
+.add-bill-items .ds-item-wrp {
+    position: relative;
+    margin-bottom: 1.5em;
+}
+
+.ar .bill-details-items .ds-item-wrp span {
+    text-align: right;
+}
+
+.bill-details-items .ds-item-wrp:before,
+.add-bill-items .ds-item-wrp:before {
+    position: absolute;
+    top: 1.8em;
+    right: 0;
+    left: 0;
+    display: block;
+    height: 1px;
+    background-color: rgba(255, 255, 255, .2);
+    content: "";
+}
+
+.bill-details-items .ds-item-wrp.ds-item-right,
+.add-bill-items .ds-item-wrp.ds-item-right {
+    margin-right: .75em;
+    text-align: right;
+}
+
+.ar .bill-details-items .ds-item-wrp.ds-item-right,
+.ar .add-bill-items .ds-item-wrp.ds-item-right {
+    margin-right: 0;
+    margin-left: .75em;
+    text-align: left;
+}
+
+.ar .bill-details-items .ds-item-wrp.ds-item-right span,
+.ar .add-bill-items .ds-item-wrp.ds-item-right span {
+    text-align: left;
+}
+
+.bill-details-items .ds-item-wrp.ds-item-has-icon,
+.add-bill-items .ds-item-wrp.ds-item-has-icon {
+    margin-top: .5em;
+    margin-left: 5em;
+}
+
+.ar .bill-details-items .ds-item-wrp.ds-item-has-icon,
+.ar .add-bill-items .ds-item-wrp.ds-item-has-icon {
+    margin-right: 5em;
+    margin-left: .75em;
+}
+
+.bill-details-items .ds-title,
+.add-bill-items .ds-title {
+    font-size: .8em;
+}
+
+.add-bill-items .bills-items .ds-title {
+    color: #fff;
+    font-size: 1em;
+    opacity: 1;
+}
+
+.add-bill-items .ds-title {
+    text-align: left;
+}
+
+.ar .add-bill-items .ds-title {
+    text-align: right;
+}
+
+.bill-details-items .ds-value,
+.add-bill-items .ds-value {
+    margin-top: 1em;
+    font-size: 1.25em;
+}
+
+.km-ios7 .km-view .km-content .add-bill-items input.ds-input {
+    padding: 0.4em 0.8em 0.3em;
+    font-size: 1em;
+}
+
+.ds-chart {
+    padding: 0 1em;
+}

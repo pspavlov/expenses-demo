@@ -1,0 +1,35 @@
+<div id="settings-view"
+	 class="view app-settings-view"
+	 data-role="view"
+	 data-layout="default"
+	 data-stretch="true"
+     data-transition="overlay:left"
+	 data-init="app.settingsService.initModule"
+	 data-show="app.settingsService.showModule"
+	 data-model="app.settingsService.viewModel">
+    
+    <div data-role="header">
+        <div data-role="navbar">
+            <h1>Dubai Services</h1>
+    	</div>
+    </div>
+    
+    <div class="ds-content-wrp">
+
+        <ul class="ds-langs">
+            <li>
+                <a class="ds-button ds-button-large ds-button-center" data-role="button" data-bind="click: onLanguageSelectEN">English</a>
+            </li>
+            <li>
+                <a class="ds-button ds-button-large ds-button-center" data-role="button" data-bind="click: onLanguageSelectAR">العربية</a>
+            </li>
+            <li data-bind="visible: isEn">
+                <a class="ds-button ds-button-large ds-button-center ds-button-logout" data-role="button" data-bind="click: onLogout">Logout</a>
+            </li>
+            <li data-bind="invisible: isEn">
+                <a class="ds-button ds-button-large ds-button-center ds-button-logout" data-role="button"  data-bind="click: onLogout">تسجيل الخروج</a>
+            </li>
+        </ul>
+        
+    </div>
+</div>
