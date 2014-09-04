@@ -3,14 +3,13 @@
 	 data-role="view"
 	 data-layout="drawer-layout"
      data-transition="overlay:left"
-     data-init="app.billDetailsService.initModule"
-	 data-show="app.billDetailsService.showModule"
-	 data-model="app.billDetailsService.viewModel">
+     data-init="app.expenseDetailsService.initModule"
+	 data-show="app.expenseDetailsService.showModule"
+	 data-model="app.expenseDetailsService.viewModel">
 
 	<div data-role="header">
         <div data-role="navbar">
-            <h1 data-bind="text: title, visible: isEn"></h1>
-            <h1 data-bind="text: title_ar, invisible: isEn"></h1>
+             <h1 data-bind="text: Title"></h1>
             <a class="ds-header-button ds-header-back" data-align="left" data-role="backbutton"><i class="fa fa-chevron-left"></i><span>Back</span></a>
 		</div>
 	</div>
@@ -21,36 +20,31 @@
         </span>
         
         <span class="ds-item-wrp ds-item-right ds-item-has-icon">
-            <span class="ds-title" data-bind="visible: isEn">Consumption</span>
-            <span class="ds-title" data-bind="invisible: isEn">استهلاك</span>
-            <span class="ds-value" data-bind="text: consumption"></span>
+            <span class="ds-title">Title</span>
+            <span class="ds-value" data-bind="text: Title"></span>
         </span>
         
         <span class="ds-item-wrp">
-            <span class="ds-title" data-bind="visible: isEn">Account</span>
-            <span class="ds-title" data-bind="invisible: isEn">حساب</span>
-            <span class="ds-value" data-bind="text: account">#: account #</span>
+            <span class="ds-title">Description</span>
+            <span class="ds-value" data-bind="text: Description">#: Description #</span>
         </span>
         
         <span class="ds-item-wrp">
-            <span class="ds-title" data-bind="visible: isEn">Period</span>
-            <span class="ds-title" data-bind="invisible: isEn">فترة</span>
-            <span class="ds-value" data-bind="text: date">#: date #</span>
+            <span class="ds-title">Amount</span>
+            <span class="ds-value" data-bind="text: Amount">#: Amount #</span>
         </span>
         
-        <span class="ds-item-wrp">
-            <span class="ds-title" data-bind="visible: isEn">Usage</span>
-            <span class="ds-title" data-bind="invisible: isEn">استعمال</span>
+        <span class="ds-item-wrp" data-bind="visible: Approved">
+            <span class="ds-title" style="color:green">APPROVED</span>
         </span>
+        
     </div>
 
-    <div id="chart" class="ds-chart"></div>
     
     <div data-role="footer" data-bind="visible: showPay">
         <div class="ds-navbar" data-role="navbar">
             <a class="ds-button ds-button-large ds-button-pay" data-role="button" data-bind="click: onPayBillClick">
                 <span class="ds-title" data-bind="visible: isEn">Pay</span>
-                <span class="ds-title" data-bind="invisible: isEn">دفع</span>
                 <span class="ds-cost">
                     <span data-bind="text: cost"></span>
                     <span>$</span>
