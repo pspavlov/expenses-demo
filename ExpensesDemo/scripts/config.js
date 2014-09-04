@@ -10,7 +10,7 @@
             signIn: "scripts/modules/login/signin.html",
             dashboard: "scripts/modules/dashboard/dashboard.html",
             main: "scripts/modules/dashboard/dashboard.html",
-            bills: "scripts/modules/bills/bills.html",
+            expenses: "scripts/modules/expenses/expenses.html",
             settings: "scripts/modules/settings/settings.html",
             settingsStarting: "scripts/modules/settings/settings-starting.html"
         }
