@@ -12,11 +12,7 @@
     document.addEventListener("deviceready", function () {
         navigator.splashscreen.hide();
 
-        app.everlive = new Everlive({
-            apiKey: app.config.everlive.apiKey,
-            scheme: app.config.everlive.scheme,
-            token: localStorage.getItem("accessToken")
-        });
+ 
 
         new kendo.mobile.Application(document.body, {
             skin: "ios7",

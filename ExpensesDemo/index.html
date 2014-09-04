@@ -36,8 +36,7 @@
             
             <div data-role="header">
                 <div data-role="navbar">
-                    <h1 data-bind="visible: isEn">Dashboard</h1>
-                    <h1 data-bind="invisible: isEn">لوحة القيادة</h1>
+                    <h1 >Dashboard</h1>
                 </div>
             </div>
     
@@ -46,8 +45,7 @@
                     <a data-role="button" href="scripts/modules/bills/bills.html">
                         <span class="ds-item">
                             <span class="ds-icon ds-icon-bills"></span>
-                            <span class="ds-title" data-bind="visible: isEn">Bills</span>
-                            <span class="ds-title" data-bind="invisible: isEn">فواتير</span>
+                            <span class="ds-title" data-bind="visible: isEn">Approve Expenses</span>
                         </span>
                     </a>
                 </li>
@@ -57,17 +55,7 @@
                             <span class="ds-icon ds-icon-notifications">
                                 <span class="ds-badge" data-bind="visible: hasUnread"><span data-bind="text: unreadNotifications"></span></span>
                             </span>
-                        <span class="ds-title" data-bind="visible: isEn">Notifications</span>
-                        <span class="ds-title" data-bind="invisible: isEn">الإشعارات </span>
-                        </span>
-                    </a>
-                </li>
-                <li>
-                    <a data-role="button" href="scripts/modules/location/location.html">
-                        <span class="ds-item">
-                            <span class="ds-icon ds-icon-centers"></span>
-                            <span class="ds-title" data-bind="visible: isEn">Customer Centers</span>
-                            <span class="ds-title" data-bind="invisible: isEn">مراكز خدمة المتعاملين </span>
+                        <span class="ds-title" data-bind="visible: isEn">Describe Expenses</span>
                         </span>
                     </a>
                 </li>
@@ -76,7 +64,6 @@
                         <span class="ds-item">
                             <span class="ds-icon ds-icon-settings"></span>
                             <span class="ds-title" data-bind="visible: isEn">Settings</span>
-                            <span class="ds-title" data-bind="invisible: isEn">الإعدادت </span>
                         </span>
                     </a>
                 </li>
