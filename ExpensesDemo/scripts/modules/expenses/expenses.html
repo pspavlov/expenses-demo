@@ -15,7 +15,7 @@
 		</div>
 	</div>
     
-    <ul class="bills-items"
+    <ul class="expenses-items"
         data-role="listview"
         data-bind="source: expensesDataSource"
 		data-template="expenses-template">       
@@ -34,7 +34,7 @@
 	</div> -->
     
     <script id="expenses-template" type="text/x-kendo-tmpl">
-    	<a class="cf #: billClass #" href="scripts/modules/expenses/expenses-details.html?dataId=#: ID #">
+    	<a class="cf #: expenseClass #" href="scripts/modules/expenses/expenses-details.html?dataId=#: ID #">
         	<span class="ds-icon ds-icon-#: icon #">
 				<i class="fa #: icon #"></i>
         	</span>
