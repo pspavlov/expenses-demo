@@ -3,17 +3,16 @@
     <head>
         <title>Dubai Services</title>
         <meta charset="utf-8" />
-        
+
         <link href="lib/font-awesome-4.1.0/css/font-awesome.min.css" rel="stylesheet">
         <link href="lib/kendo/styles/kendo.dataviz.mobile.min.css" rel="stylesheet" />
         <link href="lib/kendo/styles/kendo.dataviz.black.min.css" rel="stylesheet" />
         <link href="styles/main.css" rel="stylesheet" />
-        
+
         <script src="cordova.js"></script>
         <script src="lib/kendo/js/jquery.min.js"></script>
         <script src="lib/kendo/js/kendo.dataviz.mobile.min.js"></script>
 
-             
         <script src="scripts/config.js"></script>
         <script src="scripts/common.js"></script>
         <script src="lib/date/date.js"></script>
@@ -21,6 +20,7 @@
         <script src="scripts/modules/settings/settings.js"></script>
         <script src="scripts/modules/login/identity-providers.js"></script>
         <script src="scripts/modules/login/login.js"></script>
+        <script src="scripts/modules/dashboard/dashboard.js"></script>
     </head>
 
     <body style="width: 100%; height: 100%;">
@@ -32,52 +32,35 @@
              data-transition="overlay:up"
              data-init="app.dashBoardService.initModule"
              data-show="app.dashBoardService.showModule"
-   			 data-model="app.dashBoardService.viewModel">
-            
+             data-model="app.dashBoardService.viewModel">
+
             <div data-role="header">
                 <div data-role="navbar">
                     <h1 >Dashboard</h1>
                 </div>
             </div>
-    
+
             <ul class="dashboard-items">
                 <li>
                     <a data-role="button" href="scripts/modules/bills/bills.html">
-                        <span class="ds-item">
-                            <span class="ds-icon ds-icon-bills"></span>
-                            <span class="ds-title" data-bind="visible: isEn">Approve Expenses</span>
-                        </span>
+                        <span class="ds-item"> <span class="ds-icon ds-icon-bills"></span> <span class="ds-title" >Expenses</span> </span>
                     </a>
                 </li>
                 <li>
-                    <a data-role="button"  href="scripts/modules/notifications/notifications.html">
-                        <span class="ds-item">
-                            <span class="ds-icon ds-icon-notifications">
-                                <span class="ds-badge" data-bind="visible: hasUnread"><span data-bind="text: unreadNotifications"></span></span>
-                            </span>
-                        <span class="ds-title" data-bind="visible: isEn">Describe Expenses</span>
-                        </span>
-                    </a>
-                </li>
-                <li>
-                    <a data-role="button" href="scripts/modules/settings/settings.html">
-                        <span class="ds-item">
-                            <span class="ds-icon ds-icon-settings"></span>
-                            <span class="ds-title" data-bind="visible: isEn">Settings</span>
-                        </span>
+                    <a data-role="button" href="scripts/modules/bills/bills.html">
+                        <span class="ds-item"> <span class="ds-icon ds-icon-bills"></span> <span class="ds-title" >Add</span> </span>
                     </a>
                 </li>
             </ul>
-            
-        </div>         
+        </div>
         
         <!--Layout-->
         <div data-role="layout" data-id="drawer-layout">
             <div data-role="header">
-				<div data-role="navbar">
-					<span data-role="view-title">&nbsp;</span>
-				</div>
-			</div>
+                <div data-role="navbar">
+                    <span data-role="view-title">&nbsp;</span>
+                </div>
+            </div>
         </div>
     </body>
 </html>

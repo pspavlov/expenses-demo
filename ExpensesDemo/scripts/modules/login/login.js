@@ -5,14 +5,10 @@
         app = global.app = global.app || {};
 
     LoginBase = kendo.data.ObservableObject.extend({
-        isEn: true,
         $view: null,
 
         consts: {
-            PROVIDER_DEFAULT: "default",
-            PROVIDER_FACEBOOK: "facebook",
-            PROVIDER_GOOGLE: "google",
-            PROVIDER_LIVE_ID: "liveid",
+            PROVIDER_DEFAULT: "default"
         },
 
         init: function () {
@@ -24,12 +20,9 @@
         },
 
         _initData: function () {
-            var that = this,
-                language = app.settingsService.getLanguage();
+            var that = this;
 
             that.$view = $(that.viewId);
-            that.$view.removeClass("en ar").addClass(language);
-            that.set("isEn", language === "en");
         },
 
         checkEnter: function (e) {
@@ -81,97 +74,7 @@
                 .then($.proxy(that._onSuccess, that, that.consts.PROVIDER_DEFAULT))
                 .then(null, $.proxy(that._onError, that, that.consts.PROVIDER_DEFAULT));
         },
-
-        onLoginFacebook: function () {
-            var that = this,
-                facebookLoginProvider,
-                facebookConfig = {
-                    name: "Facebook",
-                    loginMethodName: "loginWithFacebook",
-                    responseType: "token",
-                    accessType: "online",
-                    scope: "email",
-                    display: "touch",
-                    endpoint: app.config.facebook.endpoint,
-                    clientId: app.config.facebook.appId,
-                    redirectUri: app.config.facebook.redirectUri
-                };
-
-            facebookLoginProvider = new app.IdentityProvider(facebookConfig);
-            that._onStart(that.consts.PROVIDER_FACEBOOK);
-
-            return facebookLoginProvider.getAccessToken(function (token) {
-                if (!token) {
-                    that._onCancel(that.consts.PROVIDER_FACEBOOK);
-                    return;
-                }
-
-                app.everlive.Users.loginWithFacebook(token)
-                    .then($.proxy(that._onSuccess, that, that.consts.PROVIDER_FACEBOOK))
-                    .then(null, $.proxy(that._onError, that, that.consts.PROVIDER_FACEBOOK));
-            });
-        },
-
-        onLoginGoogle: function () {
-            var that = this,
-                googleLoginProvider,
-                googleConfig = {
-                    name: "Google",
-                    loginMethodName: "loginWithGoogle",
-                    responseType: "token",
-                    accessType: "online",
-                    display: "touch",
-                    clientId: app.config.google.clientId,
-                    redirectUri: app.config.google.redirectUri,
-                    scope: app.config.google.scope,
-                    endpoint: app.config.google.endpoint
-                };
-
-            googleLoginProvider = new app.IdentityProvider(googleConfig);
-            that._onStart(that.consts.PROVIDER_GOOGLE);
-
-            return googleLoginProvider.getAccessToken(function (token) {
-                if (!token) {
-                    that._onCancel(that.consts.PROVIDER_GOOGLE);
-                    return;
-                }
-
-                app.everlive.Users.loginWithGoogle(token)
-                    .then($.proxy(that._onSuccess, that, that.consts.PROVIDER_GOOGLE))
-                    .then(null, $.proxy(that._onError, that, that.consts.PROVIDER_GOOGLE));
-            });
-        },
-
-        onLoginLiveId: function () {
-            var that = this,
-                liveIdLoginProvider,
-                liveIdConfig = {
-                    name: "LiveID",
-                    loginMethodName: "loginWithLiveID",
-                    endpoint: "https://login.live.com/oauth20_authorize.srf",
-                    responseType: "token",
-                    clientId: app.config.liveId.clientId,
-                    redirectUri: app.config.liveId.redirectUri,
-                    scope: "wl.basic",
-                    accessType: "online",
-                    display: "touch"
-                };
-
-            liveIdLoginProvider = new app.IdentityProvider(liveIdConfig);
-            that._onStart(that.consts.PROVIDER_LIVE_ID);
-
-            return liveIdLoginProvider.getAccessToken(function (token) {
-                if (!token) {
-                    that._onCancel(that.consts.PROVIDER_LIVE_ID);
-                    return;
-                }
-
-                app.everlive.Users.loginWithLiveID(token)
-                    .then($.proxy(that._onSuccess, that, that.consts.PROVIDER_LIVE_ID))
-                    .then(null, $.proxy(that._onError, that, that.consts.PROVIDER_LIVE_ID));
-            });
-        },
-
+  
         logout: function () {
             var that = this;
 

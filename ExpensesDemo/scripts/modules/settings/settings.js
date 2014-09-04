@@ -4,26 +4,12 @@
         app = global.app = global.app || {};
     
 	SettingsViewModel = kendo.data.ObservableObject.extend({
-        selectedLanguage: "",
-        isEn: true,
         loggedIn: false,
         
         events: {
-            languageUpdate: "languageUpdate",
             logout: "logout"
         },
         
-        onLanguageSelectEN: function() {
-            var that = this;
-            
-            that.trigger(that.events.languageUpdate, { lang: "en" });
-        },
-        
-        onLanguageSelectAR: function() {
-            var that = this;
-            
-            that.trigger(that.events.languageUpdate, { lang: "ar" });
-        },
         
         onLogout: function() {
             var that = this;
@@ -36,7 +22,6 @@
 		viewModel: null,
         logged: false,
         consts: {
-            localStorageKeyLang: "dubaiServicesLanguage",
             localStorageKeyUsername: "dubaiServicesUsername",
             localStorageKeyPassword: "dubaiServicesPassword",
             localStorageKeyId: "dubaiServicesId"
@@ -53,17 +38,13 @@
 		_initModule: function () {
 			var that = this;
             
-        	that.viewModel.set("selectedLanguage", that.getLanguage());
             that._bindToEvents();
 		},
         
         _showModule: function() {
-            var that = this,
-                language = app.settingsService.getLanguage();
+            var that = this;
             
             that.viewModel.$view = $(that.viewModel.viewId);
-            that.viewModel.$view.removeClass("en ar").addClass(language);
-            that.viewModel.set("isEn", language === "en");
             that.viewModel.set("loggedIn", that.isLogged() !== null);
         },
         
@@ -71,7 +52,6 @@
         _bindToEvents: function() {
             var that = this;
             
-			that.viewModel.bind(that.viewModel.events.languageUpdate, $.proxy(that.setLanguage, that));
             that.viewModel.bind(that.viewModel.events.logout, $.proxy(that.onLogout, that));
         }, 
         
@@ -84,24 +64,8 @@
             localStorage.setItem(this.consts.localStorageKeyUsername, username);
             localStorage.setItem(this.consts.localStorageKeyPassword, password);
             localStorage.setItem(this.consts.localStorageKeyId, id);
-        },
+        },        
         
-        getLanguage: function() {
-            return localStorage.getItem(this.consts.localStorageKeyLang) || "en";
-        },
-        
-        setLanguage: function(data) {
-            localStorage.setItem(this.consts.localStorageKeyLang, data.lang);
-            
-            app.analytics.Monitor().TrackFeature("Settings.Language - " + data.lang);
-            app.analytics.Monitor().ForceSync();
-            
-            if(app.settingsService.isLogged()) {
-                app.common.navigateToView(app.config.views.dashboard);
-            } else {
-                app.common.navigateToView(app.config.views.signIn);
-            }
-        },
         
         isLogged: function() {
         	return localStorage.getItem("accessToken");
