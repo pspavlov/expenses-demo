@@ -12,7 +12,7 @@
         Approved: false,
         icon: "",
         color: "",
-        billClass: "",
+        expenseClass: "",
 
         init: function (item) {
             var that = this;
@@ -29,7 +29,7 @@
             //that.setCost(item.History);
 
             //if (that.cost === 0) {
-                that.billClass = "paid";
+                //that.expenseClass = "paid";
             //}
 
             //that.history = item.History;
@@ -39,7 +39,7 @@
     });
 
     ExpensesViewModel = kendo.data.ObservableObject.extend({
-        viewId: "#bills-view",
+        viewId: "#expenses-view",
         expensesDataSource: null,
 
         //events: {
@@ -105,7 +105,7 @@
                 type: "GET",
                 headers: {
                     "ACCEPT": "application/json;odata=verbose",
-                    "Authorization": "Basic " + app.settingsService.userAuthHash
+                    "Authorization": "Basic " + app.settingsService.getUserHash()
                 },
                 success: $.proxy(that.storeExpenses, that), 
                 error: function errHandler(p1, p2, errMessage) {
@@ -118,11 +118,6 @@
                 crossDomain: true
             });
             
-            
-            
-            
-            //return app.everlive.data("Bill").expand(that.expandExp).get()
-            //    .then($.proxy(that.storeBills, that));
         },
 
         storeExpenses: function (data) {
