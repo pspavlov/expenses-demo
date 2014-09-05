@@ -35,9 +35,7 @@
                        headers: {"ACCEPT": "application/json;odata=verbose", "Authorization": "Basic " + app.settingsService.userAuthHash},
                        success: success,
                        error: error,
-                       xhrFields: {withCredentials: true},//this may be not needed
                        dataType: 'json',
-                       crossDomain: true//this may be not needed
                    });
         },
         
