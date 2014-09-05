@@ -28,60 +28,55 @@
             });
         },
         
-        _ajaxCall: function(path, method, body, headers, success, error) {
-            $.ajax({
+        _ajaxCall: function(path, method, data,headers, success, error) {
+            
+            if(!headers){
+            	headers = {};    
+            }
+            headers["ACCEPT"] = "application/json;odata=verbose";
+            headers["Authorization"] = "Basic " + app.settingsService.userAuthHash;
+            if(method ==="POST"){
+                headers["X-RequestDigest"] = localStorage.getItem("formDigestValue");
+            }
+            var options = {
                        url: app.config.sharepoint.baseUrl + path,
                        type: method,
-                       headers: {"ACCEPT": "application/json;odata=verbose", "Authorization": "Basic " + app.settingsService.userAuthHash},
+                       headers:headers,
                        success: success,
                        error: error,
                        dataType: 'json',
-                   });
+                   };
+            if(data){
+                options.data = JSON.stringify(data);
+            }
+            
+            $.ajax(options);
         },
         
         login: function(username, password, success, error) {
             var bytes = Crypto.charenc.Binary.stringToBytes(username + ":" + password); 
             app.settingsService.userAuthHash = Crypto.util.bytesToBase64(bytes);
-            this._ajaxCall("contextinfo","POST", null, null,success, error);
+            this._ajaxCall("contextinfo","POST", null, null, success, error);
         },
         
         getListItems: function(listName, success, error) {
-            this._ajaxCall("web/lists/getByTitle('" + listName + "')/items","GET", null, null, success, error);
+            this._ajaxCall("web/lists/getByTitle('" + listName + "')/items","GET", null, null, success, error);  
         },
         
         getListItemById: function(listname, id, success, error){
-           this._ajaxCall("web/lists/getByTitle('" + listname +"')/items(" + id + ")","GET",null, null, success, error);
+           this._ajaxCall("web/lists/getByTitle('" + listname +"')/items(" + id + ")", "GET", null, null,  success, error);
         },
         
-        updateListItem: function(listname, id, success, error){
-            //todo : implement headers and body in the ajax call function
-            var body = { '__metadata': { 'type': 'SP.Data.TestListItem' }, 'Title': 'TestUpdated'};
-            this._ajaxCall("web/lists/getByTitle('" + listname +"')/items(" + id + ")","POST", body, headers, success, error);
-            /*
-            headers:
-            Authorization: "Bearer " + accessToken
-             X-RequestDigest: form digest value
-            "IF-MATCH": etag or "*"
-            "X-HTTP-Method":"MERGE",
-            accept: "application/json;odata=verbose"
-            content-type: "application/json;odata=verbose"
-            content-length:length of post body
-            */
+        updateListItem: function(listname, etag, data, success, error){
+            var headers;
+            headers["IF-MATCH"] = etag;
+            headers["X-HTTP-Method"] = "MERGE"
+            this._ajaxCall("web/lists/getByTitle('" + listName + "')/items","POST",data, null,  success, error);
         },
         
-        createListItem: function(listname, id, success, error){
-            console.log('create item not implemented');
-            /*
-            url: http://site url/_api/web/lists/GetByTitle(‘Test')/items
-            method: POST
-            body: { '__metadata': { 'type': 'SP.Data.TestListItem' }, 'Title': 'Test'}
-            headers:
-            Authorization: "Bearer " + accessToken
-             X-RequestDigest: form digest value
-            accept: "application/json;odata=verbose"
-            content-type: "application/json;odata=verbose"
-            content-length:length of post body
-            */
+        createListItem: function(listname,data, success, error){
+
+            this._ajaxCall("web/lists/getByTitle('" + listName + "')/items","POST",data, headers, success, error); 
         },
     }
     app.sharepointService = new SharepointService();
