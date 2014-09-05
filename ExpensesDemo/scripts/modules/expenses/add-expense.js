@@ -75,7 +75,7 @@
         _addExpenseCompleted: function() {
             app.common.hideLoading();
             app.common.navigateToView(app.config.views.expenses);
-        },
+        }, 
 
 		_initModule: function () {
 			var that = this;
