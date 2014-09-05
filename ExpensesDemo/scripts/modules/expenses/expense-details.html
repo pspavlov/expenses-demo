@@ -32,21 +32,16 @@
         <span class="ds-item-wrp">
             <span class="ds-title">Amount</span>
             <span class="ds-value" data-bind="text: Amount">#: Amount #</span>
-        </span>
-        
-        <span class="ds-item-wrp" data-bind="visible: Approved">
-            <span class="ds-title" style="color:green">APPROVED</span>
-        </span>
-        
+        </span>        
     </div>
 
     
-    <div data-role="footer" data-bind="visible: showPay">
+    <div data-role="footer" data-bind="invisible: Approved">
         <div class="ds-navbar" data-role="navbar">
-            <a class="ds-button ds-button-large ds-button-pay" data-role="button" data-bind="click: onPayBillClick">
-                <span class="ds-title" data-bind="visible: isEn">Pay</span>
+            <a class="ds-button ds-button-large ds-button-pay" data-role="button" data-bind="click: onApproveExpenseClick">
+                <span class="ds-title">Approve</span>
                 <span class="ds-cost">
-                    <span data-bind="text: cost"></span>
+                    <span data-bind="text: Amount"></span>
                     <span>$</span>
                 </span>
             </a>

@@ -44,7 +44,7 @@
         
         _onAddExpense: function() {
             var that = this,
-                newExpense = {
+            newExpense = {
                 "Title": that.viewModel.get("Title"),
                 "Description": that.viewModel.get("Description"),
                 "Amount": that.viewModel.get("Amount"),

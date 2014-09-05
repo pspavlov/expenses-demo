@@ -13,9 +13,11 @@
         Description: "",
         Amount: 0,
         Approved: false,
-        //events: {
-        //    payBill: "payBill"
-        //},
+        Etag: "",
+        Uri: "",
+        events: {
+            approveExpense: "approveExpense"
+        },
         
 		init: function () {
 			var that = this;
@@ -23,11 +25,11 @@
 			kendo.data.ObservableObject.fn.init.apply(that, arguments);
         },
         
-        //onPayBillClick: function() {
-        //    var that = this;
+        onApproveExpenseClick: function() {
+            var that = this;
             
-        //    that.trigger(that.events.payBill, {});
-        //}
+            that.trigger(that.events.approveExpense, {});
+        }
 	});
 
 	ExpenseDetailsService = kendo.Class.extend({
@@ -47,7 +49,7 @@
         _bindToEvents: function() {
 			var that = this;
             
-            //that.viewModel.bind(that.viewModel.events.payBill, $.proxy(that.onPayBill, that));
+            that.viewModel.bind(that.viewModel.events.approveExpense, $.proxy(that.onApproveExpense, that));
         },
 
 		_initModule: function (e) {
@@ -87,13 +89,6 @@
                 crossDomain: true
             });
             
-            
-            
-            
-			//app.everlive.data("Bill").expand(that.expandExp).getById(dataId)
-            //    .then($.proxy(that.setData, that))
-            //    .then(null, $.proxy(that.onError, that));
-            
             that.viewModel.$view = $(that.viewModel.viewId);
         },
 
@@ -105,6 +100,8 @@
             that.viewModel.set("Description", expenseData.Description);
             that.viewModel.set("Amount", expenseData.Amount);
             that.viewModel.set("Approved", expenseData.Approved);
+            that.viewModel.set("Etag", expenseData.__metadata.etag);
+            that.viewModel.set("Uri", expenseData.__metadata.uri);
             //that.viewModel.set("parentClass",  "ds-icon ds-icon-" + expenseData.Type.Icon);
             //that.viewModel.set("innerClass", "fa " + expenseData.Type.Icon);
             //that.viewModel.set("color", expenseData.Type.Color);
@@ -112,36 +109,41 @@
 			app.common.hideLoading();
 		},
         
-        //onPayBill: function() {
-        //    var that = this;
+        onApproveExpense: function() {
+            var that = this;
             
-        //    if(that.viewModel.get("isEn")) {
-        //   		app.common.showLoading("Payment proceeding. This might take a couple of minutes");
-        //    } else {
-        //        app.common.showLoading("دفع الدعوى. وهذا قد يستغرق بضع دقائق");
-        //    }
+            app.common.showLoading("Approval proceeding. This might take a couple of minutes");
             
-        //    //todo - create and pass DTO instead of viewModel
-        //    app.paymentService.pay(that.viewModel)
-        //    	.then($.proxy(that.paymentCompleted, that));       
-        //},
+            var updateExpense = {
+                "Approved": true,
+                "__metadata": { 'type': 'SP.Data.ExpensesListItem' }
+            }
+            
+            $.ajax({
+                url: that.viewModel.get("Uri"),
+                type: "POST",
+                contentType: "application/json;odata=verbose",
+                data: JSON.stringify(updateExpense),
+                headers: {
+                    "Accept": "application/json;odata=verbose",
+                    "Authorization": "Basic " + localStorage.getItem("userAuthHash"),
+                    "X-HTTP-Method": "MERGE",
+                    "X-RequestDigest" : localStorage.getItem("formDigestValue"),
+                    "If-Match": that.viewModel.get("Etag")
+                },
+                success: $.proxy(that.expenseApproved, that),
+                error:that.onError
+            });             
+        },
         
-        //paymentCompleted: function(data) {
-        //    var that = this;
-            
-        //    if(data.state === "approved") {
-        //        for (var i=0; i < that.paidBillHistories.length; i++) {
-        //            app.everlive.data("BillHistory").updateSingle({Id:that.paidBillHistories[i], "Paid": true});
-        //        }
-
-        //        app.common.notification("Payment completed", "Payment Completed");
-        //        app.common.hideLoading();
-        //        that._showModule({ view: that.view } );
-        //        that.viewModel.set("showPay", false);
-        //    } else {
-        //        app.common.notification("Payment Failed", "Payment Failed");
-        //    }
-        //},
+        expenseApproved: function(data) {
+            var that = this;
+            //app.common.notification("Approval completed", "Approval completed");
+            app.common.hideLoading();
+            //that._showModule({ view: that.view } );
+            //that.viewModel.set("Approved", true);
+            app.common.navigateToView(app.config.views.expenses);
+        },
 
 		onError: function (e) {
 			app.common.hideLoading();
