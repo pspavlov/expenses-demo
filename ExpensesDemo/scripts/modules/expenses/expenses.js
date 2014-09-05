@@ -100,25 +100,7 @@
         getExpensesData: function () {
             var that = this;
 
-            
-            $.ajax({
-                url: "http://enterprisepocs.cloudapp.net/_api/web/lists/getByTitle('Expenses')/items",
-                type: "GET",
-                headers: {
-                    "ACCEPT": "application/json;odata=verbose",
-                    "Authorization": "Basic " + app.settingsService.getUserHash()
-                },
-                success: $.proxy(that.storeExpenses, that), 
-                error: function errHandler(p1, p2, errMessage) {
-                    console.log("fail! : " + errMessage);
-                },
-                xhrFields: {
-                    withCredentials: true
-                },
-                dataType: 'json',
-                crossDomain: true
-            });
-            
+            app.sharepointService.getListItems("Expenses", $.proxy(that.storeExpenses, that),$.proxy(that._onError, that, "***")); 
         },
 
         storeExpenses: function (data) {
@@ -134,6 +116,10 @@
             that.viewModel.get("expensesDataSource").data(ds);
             app.common.hideLoading();
         },
+         _onError: function (provider, e) {
+            app.common.hideLoading();
+            app.common.notification("Error loading expenses list", e.message);//todo check why err message is not displayed in the alert.
+        }
 
         //onPayAll: function (data) {
         //    var that = this;

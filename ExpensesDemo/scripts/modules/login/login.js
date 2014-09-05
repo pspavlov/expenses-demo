@@ -8,7 +8,8 @@
         $view: null,
 
         consts: {
-            PROVIDER_DEFAULT: "default"
+            PROVIDER_DEFAULT: "default",
+            MESSAGE_TITLE_SIGN_IN_ERROR: "Sign In Error",
         },
 
         init: function () {
@@ -84,8 +85,6 @@
         },
 
         _onLogout: function () {
-            var that = this;
-
             app.settingsService.removeCredentials();
             app.common.navigateToView(app.config.views.settingsStarting);
         },
