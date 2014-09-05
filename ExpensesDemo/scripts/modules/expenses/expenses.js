@@ -100,7 +100,7 @@
         getExpensesData: function () {
             var that = this;
 
-            app.sharepointService.getListItems("Expenses", $.proxy(that.storeExpenses, that),$.proxy(that._onError, that, "***")); 
+            app.sharepointService.getListItems("Expenses", $.proxy(that.storeExpenses, that),$.proxy(that._onError, that, ""));
         },
 
         storeExpenses: function (data) {
@@ -118,7 +118,7 @@
         },
          _onError: function (provider, e) {
             app.common.hideLoading();
-            app.common.notification("Error loading expenses list", e.message);//todo check why err message is not displayed in the alert.
+            app.common.notification("Error loading expenses list", JSON.stringify(e));
         }
 
         //onPayAll: function (data) {

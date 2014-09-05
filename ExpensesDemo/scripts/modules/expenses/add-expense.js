@@ -53,8 +53,8 @@
             }
             
             app.common.showLoading();
-            
-            
+            app.sharepointService.createListItem("Expenses",newExpense,  $.proxy(that._addExpenseCompleted, that), $.proxy(that._onError, that, ""));
+            /*
             $.ajax({
                 url: "http://enterprisepocs.cloudapp.net/_api/web/lists/getByTitle('Expenses')/items",
                 type: "POST",
@@ -70,6 +70,11 @@
                     console.log("fail! : " + errMessage);
                 }
             });
+            */
+        },
+         _onError: function (provider, e) {
+            app.common.hideLoading();
+            app.common.notification("Error while adding expense", JSON.stringify(e));//todo check why err message is not displayed in the alert.
         },
         
         _addExpenseCompleted: function() {

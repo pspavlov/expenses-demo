@@ -35,6 +35,7 @@
             }
             headers["ACCEPT"] = "application/json;odata=verbose";
             headers["Authorization"] = "Basic " + app.settingsService.userAuthHash;
+            headers["Content-Type"] = "application/json;odata=verbose";
             if(method ==="POST"){
                 headers["X-RequestDigest"] = localStorage.getItem("formDigestValue");
             }
@@ -71,12 +72,12 @@
             var headers;
             headers["IF-MATCH"] = etag;
             headers["X-HTTP-Method"] = "MERGE"
-            this._ajaxCall("web/lists/getByTitle('" + listName + "')/items","POST",data, null,  success, error);
+            this._ajaxCall("web/lists/getByTitle('" + listname + "')/items","POST",data, headers,  success, error);
         },
         
         createListItem: function(listname,data, success, error){
 
-            this._ajaxCall("web/lists/getByTitle('" + listName + "')/items","POST",data, headers, success, error); 
+            this._ajaxCall("web/lists/getByTitle('" + listname + "')/items","POST",data, null, success, error); 
         },
     }
     app.sharepointService = new SharepointService();
