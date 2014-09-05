@@ -72,23 +72,8 @@
 
             that.viewModel.set("ID", dataId);
 
-            
-             $.ajax({
-                url: "http://enterprisepocs.cloudapp.net/_api/web/lists/getByTitle('Expenses')/items(" + dataId + ")",
-                type: "GET",
-                headers: {
-                    "ACCEPT": "application/json;odata=verbose",
-                    "Authorization": "Basic " + app.settingsService.getUserHash()
-                },
-                success: $.proxy(that.setData, that), 
-                error:  $.proxy(that.onError, that),
-                xhrFields: {
-                    withCredentials: true
-                },
-                dataType: 'json',
-                crossDomain: true
-            });
-            
+            app.sharepointService.getListItemById("Expenses",dataId,  $.proxy(that.setData, that),  $.proxy(that.onError, that));
+             
             that.viewModel.$view = $(that.viewModel.viewId);
         },
 
