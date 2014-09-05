@@ -24,6 +24,7 @@
             //    that.color = item.Type.Color;
             //}
             that.Title = item.Title;
+            that.Approved = item.Approved;
 
 
             //that.setCost(item.History);
