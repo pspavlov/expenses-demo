@@ -69,24 +69,9 @@
             }
 
             that._onStart(that.consts.PROVIDER_DEFAULT);
-            var bytes = Crypto.charenc.Binary.stringToBytes("ddimitrov" + ":" + "Telerik34");
+            var bytes = Crypto.charenc.Binary.stringToBytes(username + ":" + password);
             var userAuthHash = Crypto.util.bytesToBase64(bytes);
-            
-            $.ajax({
-                url: "http://enterprisepocs.cloudapp.net/_api/contextinfo",
-                type: "POST",
-                headers: {
-                    "ACCEPT": "application/json;odata=verbose",
-                    "Authorization": "Basic " + userAuthHash
-                },
-                success:$.proxy(that._onSuccess, that, userAuthHash),
-                error: $.proxy(that._onError, that, that.consts.PROVIDER_DEFAULT),
-                xhrFields: {
-                	withCredentials: true
-                },
-                dataType: 'json',
-                crossDomain: true
-            });
+            app.sharepointService.login (username, password, $.proxy(that._onSuccess, that, userAuthHash), $.proxy(that._onError, that, that.consts.PROVIDER_DEFAULT));
         },
   
         logout: function () {
