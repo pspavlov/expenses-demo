@@ -5,6 +5,9 @@
     };
     
     app.config = {
+         sharepoint: {
+            baseUrl: "http://enterprisepocs.cloudapp.net/_api/",
+        },
         views: {
             init: "#init-view",
             signIn: "scripts/modules/login/signin.html",
