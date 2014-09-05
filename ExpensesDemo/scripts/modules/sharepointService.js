@@ -68,11 +68,12 @@
            this._ajaxCall("web/lists/getByTitle('" + listname +"')/items(" + id + ")", "GET", null, null,  success, error);
         },
         
-        updateListItem: function(listname, etag, data, success, error){
-            var headers;
+        updateListItem: function(listname, etag, id, data, success, error){
+            console.log('etag' + etag);
+            var headers = {};
             headers["IF-MATCH"] = etag;
             headers["X-HTTP-Method"] = "MERGE"
-            this._ajaxCall("web/lists/getByTitle('" + listname + "')/items","POST",data, headers,  success, error);
+            this._ajaxCall("web/lists/getByTitle('" + listname +"')/items(" + id + ")", "POST", data, headers, success, error);
         },
         
         createListItem: function(listname,data, success, error){

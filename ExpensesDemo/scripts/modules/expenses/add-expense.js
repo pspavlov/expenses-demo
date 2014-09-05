@@ -54,27 +54,10 @@
             
             app.common.showLoading();
             app.sharepointService.createListItem("Expenses",newExpense,  $.proxy(that._addExpenseCompleted, that), $.proxy(that._onError, that, ""));
-            /*
-            $.ajax({
-                url: "http://enterprisepocs.cloudapp.net/_api/web/lists/getByTitle('Expenses')/items",
-                type: "POST",
-                contentType: "application/json;odata=verbose",
-                data: JSON.stringify(newExpense),
-                headers: {
-                    "Accept": "application/json;odata=verbose",
-                    "Authorization": "Basic " + localStorage.getItem("userAuthHash"),
-                    "X-RequestDigest" : localStorage.getItem("formDigestValue")
-                },
-                success: $.proxy(that._addExpenseCompleted, that),
-                error: function (p1, p2, errMessage) {
-                    console.log("fail! : " + errMessage);
-                }
-            });
-            */
         },
          _onError: function (provider, e) {
             app.common.hideLoading();
-            app.common.notification("Error while adding expense", JSON.stringify(e));//todo check why err message is not displayed in the alert.
+            app.common.notification("Error while adding expense", JSON.stringify(e));
         },
         
         _addExpenseCompleted: function() {

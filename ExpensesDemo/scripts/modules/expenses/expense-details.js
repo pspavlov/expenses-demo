@@ -104,21 +104,7 @@
                 "__metadata": { 'type': 'SP.Data.ExpensesListItem' }
             }
             
-            $.ajax({
-                url: that.viewModel.get("Uri"),
-                type: "POST",
-                contentType: "application/json;odata=verbose",
-                data: JSON.stringify(updateExpense),
-                headers: {
-                    "Accept": "application/json;odata=verbose",
-                    "Authorization": "Basic " + localStorage.getItem("userAuthHash"),
-                    "X-HTTP-Method": "MERGE",
-                    "X-RequestDigest" : localStorage.getItem("formDigestValue"),
-                    "If-Match": that.viewModel.get("Etag")
-                },
-                success: $.proxy(that.expenseApproved, that),
-                error:that.onError
-            });             
+            app.sharepointService.updateListItem ("Expenses",  that.viewModel.get("Etag"),that.viewModel.get("ID"), updateExpense, $.proxy(that.expenseApproved, that), that.onError)
         },
         
         expenseApproved: function(data) {
@@ -132,7 +118,7 @@
 
 		onError: function (e) {
 			app.common.hideLoading();
-			app.common.notification("Error", e.message);
+			app.common.notification("Error", JSON.stringify(e));
 		}
 	});
 
