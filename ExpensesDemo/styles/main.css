@@ -638,7 +638,7 @@ html {
     content: "\f013";
 }
 
-.expenses-view .expenses-items > li,
+.claims-view .claims-items > li,
 .notifications-view .notifications-items > li {
     margin-bottom: .1em;
     padding: 0;
@@ -646,13 +646,13 @@ html {
     border-image: none;
 }
 
-.expenses-view .expenses-items > li:last-child,
+.claims-view .claims-items > li:last-child,
 .notifications-view .notifications-items > li:last-child {
     -webkit-box-shadow: none;
     box-shadow: none;
 }
 
-.expenses-view .expenses-items > li > a.km-listview-link,
+.claims-view .claims-items > li > a.km-listview-link,
 .notifications-view .notifications-items > li > a.km-listview-link {
     position: relative;
     overflow: hidden;
@@ -663,28 +663,28 @@ html {
     background-clip: border-box;
 }
 
-.expenses-view .expenses-items > li.km-state-active > a.km-listview-link,
+.claims-view .claims-items > li.km-state-active > a.km-listview-link,
 .notifications-view .notifications-items > li.km-state-active > a.km-listview-link {
     background-color: rgba(255,255, 255, .3);
 }
 
-.expenses-view.ar .expenses-items > li > a.km-listview-link,
+.claims-view.ar .claims-items > li > a.km-listview-link,
 .notifications-view.ar .notifications-items > li > a.km-listview-link {
     padding: .8em 1.25em .8em 2.5em;
 }
 
-.expenses-view .expenses-items > li > a.km-listview-link.paid,
+.claims-view .claims-items > li > a.km-listview-link.paid,
 .notifications-view .notifications-items > li > a.km-listview-link.new {
     background-color: rgba(255,255, 255, .75);
 }
 
-.expenses-view .expenses-items > li > a.km-listview-link.paid .ds-title,
-.expenses-view .expenses-items > li > a.km-listview-link.paid .ds-cost,
+.claims-view .claims-items > li > a.km-listview-link.paid .ds-title,
+.claims-view .claims-items > li > a.km-listview-link.paid .ds-cost,
 .notifications-view .notifications-items > li > a.km-listview-link.new .ds-title {
     opacity: .5;
 }
 
-.expenses-view .expenses-items > li > a.km-listview-link:before,
+.claims-view .claims-items > li > a.km-listview-link:before,
 .notifications-view .notifications-items > li > a.km-listview-link:before {
     position: absolute;
     top: 50%;
@@ -706,13 +706,13 @@ html {
     content: "\f053";
 }
 
-.expenses-view.ar .expenses-items > li > a.km-listview-link:before,
+.claims-view.ar .claims-items > li > a.km-listview-link:before,
 .notifications-view.ar .notifications-items > li > a.km-listview-link:before {
     right: auto;
     left: .75em;
 }
 
-.expenses-view .ds-icon,
+.claims-view .ds-icon,
 .bill-details-view .ds-icon,
 .add-bill-view .ds-icon {
     display: block;
@@ -726,11 +726,11 @@ html {
     text-align: center;
 }
 
-.expenses-view.ar .ds-icon {
+.claims-view.ar .ds-icon {
     float: right;
 }
 
-.expenses-view .ds-icon .fa,
+.claims-view .ds-icon .fa,
 .bill-details-view .ds-icon .fa,
 .add-bill-view .ds-icon .fa {
     margin-top: .35em;
@@ -870,18 +870,18 @@ html {
     height: 6.75em;
 }
 
-.add-bill-items .ds-scroller .expenses-items > li {
+.add-bill-items .ds-scroller .claims-items > li {
     padding-left: 0;
     border-image: none;
 }
 
-.add-bill-items .ds-scroller .expenses-items > li:last-child {
+.add-bill-items .ds-scroller .claims-items > li:last-child {
     border-bottom: 0 none;
     -webkit-box-shadow: none;
     box-shadow: none;
 }
 
-.expenses-items .ds-cost {
+.claims-items .ds-cost {
     display: inline-block;
     float: right;
     height: 2em;
@@ -889,7 +889,7 @@ html {
     line-height: 2em;
 }
 
-.ar .expenses-items .ds-cost {
+.ar .claims-items .ds-cost {
     float: left;
 }
 
@@ -974,7 +974,7 @@ html {
     font-size: .8em;
 }
 
-.add-bill-items .expenses-items .ds-title {
+.add-bill-items .claims-items .ds-title {
     color: #000;
     font-size: 1em;
     opacity: 1;

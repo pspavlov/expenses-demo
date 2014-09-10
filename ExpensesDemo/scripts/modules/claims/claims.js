@@ -1,18 +1,18 @@
 (function (global) {
-    var Expense,
-        ExpensesViewModel,
-        ExpensesService,
+    var claim,
+        claimsViewModel,
+        claimsService,
         app = global.app = global.app || {};
 
     app.newLeafData = app.newLeafData || {};
 
-    Expense = kendo.data.ObservableObject.extend({
+    claim = kendo.data.ObservableObject.extend({
         ID: null,
         Title: "",
         Approved: false,
         icon: "",
         color: "",
-        expenseClass: "",
+        claimClass: "",
 
         init: function (item) {
             var that = this;
@@ -30,7 +30,7 @@
             //that.setCost(item.History);
 
             //if (that.cost === 0) {
-                //that.expenseClass = "paid";
+                //that.claimClass = "paid";
             //}
 
             //that.history = item.History;
@@ -39,9 +39,9 @@
         },
     });
 
-    ExpensesViewModel = kendo.data.ObservableObject.extend({
-        viewId: "#expenses-view",
-        expensesDataSource: null,
+    claimsViewModel = kendo.data.ObservableObject.extend({
+        viewId: "#claims-view",
+        claimsDataSource: null,
 
         //events: {
         //    payAll: "payAll"
@@ -50,7 +50,7 @@
         init: function () {
             var that = this;
 
-            that.expensesDataSource = new kendo.data.DataSource({
+            that.claimsDataSource = new kendo.data.DataSource({
                 pageSize: 10
             });
 
@@ -67,13 +67,13 @@
     });
 
 
-    ExpensesService = kendo.Class.extend({
+    claimsService = kendo.Class.extend({
         viewModel: null,
 
         init: function () {
             var that = this;
 
-            that.viewModel = new ExpensesViewModel();
+            that.viewModel = new claimsViewModel();
             that._bindToEvents();
 
             that.initModule = $.proxy(that._initModule, that);
@@ -94,31 +94,31 @@
             var that = this;
             app.common.showLoading();
             that.viewModel.$view = $(that.viewModel.viewId);
-            that.getExpensesData();
+            that.getclaimsData();
         },
 
-        getExpensesData: function () {
+        getclaimsData: function () {
             var that = this;
 
-            app.sharepointService.getListItems("Expenses", $.proxy(that.storeExpenses, that),$.proxy(that._onError, that, ""));
+            app.sharepointService.getListItems("claims", $.proxy(that.storeclaims, that),$.proxy(that._onError, that, ""));
         },
 
-        storeExpenses: function (data) {
+        storeclaims: function (data) {
             var that = this,
-                newExpense,
+                newclaim,
                 ds = [];
 
             for (var i = 0; i < data.d.results.length; i++) {
-                newExpense = new Expense(data.d.results[i]);
-                ds.push(newExpense);
+                newclaim = new claim(data.d.results[i]);
+                ds.push(newclaim);
             }
 
-            that.viewModel.get("expensesDataSource").data(ds);
+            that.viewModel.get("claimsDataSource").data(ds);
             app.common.hideLoading();
         },
          _onError: function (provider, e) {
             app.common.hideLoading();
-            app.common.notification("Error loading expenses list", JSON.stringify(e));
+            app.common.notification("Error loading claims list", JSON.stringify(e));
         }
 
         //onPayAll: function (data) {
@@ -161,5 +161,5 @@
         //}
     });
 
-    app.expensesService = new ExpensesService();
+    app.claimsService = new claimsService();
 })(window);

@@ -22,8 +22,8 @@
 		viewModel: null,
         logged: false,
         consts: {
-            localStorageKeyUsername: "expensesUsername",
-            localStorageKeyPassword: "expensesPassword",
+            localStorageKeyUsername: "claimsUsername",
+            localStorageKeyPassword: "claimsPassword",
             localStorageUserAuthHash: "userAuthHash",
             localStorageUserFormDigestValue: "formDigestValue"
         },

@@ -1,13 +1,13 @@
 (function (global) {
-	var AddExpenseViewModel,
-        AddExpenseService,
+	var AddclaimViewModel,
+        AddclaimService,
         app = global.app = global.app || {};
     
-	AddExpenseViewModel = kendo.data.ObservableObject.extend({
+	AddclaimViewModel = kendo.data.ObservableObject.extend({
         viewId: "#add-bill-view",
         
         events: {
-            addExpense: "addExpense"  
+            addclaim: "addclaim"  
         },
         
 		init: function () {
@@ -19,18 +19,18 @@
         onAdd: function() {
             var that = this;
             
-            that.trigger(that.events.addExpense);
+            that.trigger(that.events.addclaim);
         }
 	});
 
 
-	AddExpenseService = kendo.Class.extend({
+	AddclaimService = kendo.Class.extend({
 		viewModel: null,
 
 		init: function () {
 			var that = this;
 
-			that.viewModel = new AddExpenseViewModel();
+			that.viewModel = new AddclaimViewModel();
             
 			that.initModule = $.proxy(that._initModule, that);
             that.showModule = $.proxy(that._showModule, that);
@@ -39,30 +39,30 @@
         _bindToEvents: function() {
           	var that = this;
             
-            that.viewModel.bind(that.viewModel.events.addExpense, $.proxy(that._onAddExpense, that));
+            that.viewModel.bind(that.viewModel.events.addclaim, $.proxy(that._onAddclaim, that));
         },
         
-        _onAddExpense: function() {
+        _onAddclaim: function() {
             var that = this,
-            newExpense = {
+            newclaim = {
                 "Title": that.viewModel.get("Title"),
                 "Description": that.viewModel.get("Description"),
                 "Amount": that.viewModel.get("Amount"),
                 "Approved": false,
-                "__metadata": { 'type': 'SP.Data.ExpensesListItem' }
+                "__metadata": { 'type': 'SP.Data.claimsListItem' }
             }
             
             app.common.showLoading();
-            app.sharepointService.createListItem("Expenses",newExpense,  $.proxy(that._addExpenseCompleted, that), $.proxy(that._onError, that, ""));
+            app.sharepointService.createListItem("claims",newclaim,  $.proxy(that._addclaimCompleted, that), $.proxy(that._onError, that, ""));
         },
          _onError: function (provider, e) {
             app.common.hideLoading();
-            app.common.notification("Error while adding expense", JSON.stringify(e));
+            app.common.notification("Error while adding claim", JSON.stringify(e));
         },
         
-        _addExpenseCompleted: function() {
+        _addclaimCompleted: function() {
             app.common.hideLoading();
-            app.common.navigateToView(app.config.views.expenses);
+            app.common.navigateToView(app.config.views.claims);
         }, 
 
 		_initModule: function () {
@@ -83,5 +83,5 @@
        
 	});
     
-	app.addExpenseService = new AddExpenseService();
+	app.addclaimService = new AddclaimService();
 })(window);

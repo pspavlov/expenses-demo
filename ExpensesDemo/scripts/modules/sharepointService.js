@@ -13,9 +13,9 @@
             this.login('ppavlov', 'Telerik34', function(result) {
                 var formDigestValue = result.d.GetContextWebInformation.FormDigestValue;
                 console.log('1. Login:	' +  formDigestValue);     
-                self.getListItems("Expenses", function(result){
+                self.getListItems("claims", function(result){
                     console.log('2. Get all:	' + JSON.stringify(result));
-                    self.getListItemById("Expenses",2 , function(result){
+                    self.getListItemById("claims",2 , function(result){
                     	console.log('3. Get by ID:	' + JSON.stringify(result));
                 	}, function(err){
                     	console.log('get by Id epic fail' + JSON.stringify(err));

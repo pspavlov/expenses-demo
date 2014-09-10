@@ -3,9 +3,9 @@
 	 data-role="view"
 	 data-layout="drawer-layout"
      data-transition="overlay:left"
-     data-init="app.expenseDetailsService.initModule"
-	 data-show="app.expenseDetailsService.showModule"
-	 data-model="app.expenseDetailsService.viewModel">
+     data-init="app.claimDetailsService.initModule"
+	 data-show="app.claimDetailsService.showModule"
+	 data-model="app.claimDetailsService.viewModel">
 
 	<div data-role="header">
         <div data-role="navbar">
@@ -38,7 +38,7 @@
     
     <div data-role="footer" data-bind="invisible: Approved">
         <div class="ds-navbar" data-role="navbar">
-            <a class="ds-button ds-button-large ds-button-pay" data-role="button" data-bind="click: onApproveExpenseClick">
+            <a class="ds-button ds-button-large ds-button-pay" data-role="button" data-bind="click: onApproveclaimClick">
                 <span class="ds-title">Approve</span>
                 <span class="ds-cost">
                     <span data-bind="text: Amount"></span>

@@ -1,24 +1,24 @@
-<div id="expenses-view"
-     class="view expenses-view"
+<div id="claims-view"
+     class="view claims-view"
      data-role="view"
-	 data-init="app.expensesService.initModule"
-     data-show="app.expensesService.showModule"
-	 data-model="app.expensesService.viewModel"
+	 data-init="app.claimsService.initModule"
+     data-show="app.claimsService.showModule"
+	 data-model="app.claimsService.viewModel"
      data-layout="drawer-layout"
      data-transition="overlay:left">
     
 	<div data-role="header">
         <div data-role="navbar">
-            <h1>Expenses</h1>
+            <h1>claims</h1>
             <a class="ds-header-button ds-header-back" data-align="left" data-role="backbutton"><i class="fa fa-chevron-left"></i><span>Back</span></a>
-            <a class="ds-header-button ds-header-add" data-align="right" data-role="button" href="scripts/modules/expenses/add-expense.html"><i class="fa fa-plus"></i><span>Add</span></a>
+            <a class="ds-header-button ds-header-add" data-align="right" data-role="button" href="scripts/modules/claims/add-claim.html"><i class="fa fa-plus"></i><span>Add</span></a>
 		</div>
 	</div>
     
-    <ul class="expenses-items"
+    <ul class="claims-items"
         data-role="listview"
-        data-bind="source: expensesDataSource"
-		data-template="expenses-template">       
+        data-bind="source: claimsDataSource"
+		data-template="claims-template">       
     </ul>    
 
     <!--<div data-role="footer" data-bind="visible: showPay"> //to be reused for approve
@@ -33,8 +33,8 @@
 		</div>
 	</div> -->
     
-    <script id="expenses-template" type="text/x-kendo-tmpl">
-    	<a class="cf #: expenseClass #" href="scripts/modules/expenses/expense-details.html?dataId=#: ID #">
+    <script id="claims-template" type="text/x-kendo-tmpl">
+    	<a class="cf #: claimClass #" href="scripts/modules/claims/claim-details.html?dataId=#: ID #">
         	<span class="ds-item-content-wrp">
                 <span class="ds-title">#: Title #</span>        		
             </span>            
