@@ -16,7 +16,8 @@
         Etag: "",
         Uri: "",
         events: {
-            approveclaim: "approveclaim"
+            approveClaim: "approveClaim", 
+            capturePhoto: "capturePhoto"
         },
         
 		init: function () {
@@ -25,10 +26,14 @@
 			kendo.data.ObservableObject.fn.init.apply(that, arguments);
         },
         
-        onApproveclaimClick: function() {
+        onApproveClaimClick: function() {
             var that = this;
             
-            that.trigger(that.events.approveclaim, {});
+            that.trigger(that.events.approveClaim, {});
+        },
+        onAddPhotoClick: function() {
+            var that = this;
+            that.trigger(that.events.capturePhoto, {});  
         }
 	});
 
@@ -40,6 +45,7 @@
 			var that = this;
 
 			that.viewModel = new claimDetailsViewModel();
+            
             that._bindToEvents();
             
 			that.initModule = $.proxy(that._initModule, that);
@@ -48,8 +54,8 @@
         
         _bindToEvents: function() {
 			var that = this;
-            
-            that.viewModel.bind(that.viewModel.events.approveclaim, $.proxy(that.onApproveclaim, that));
+            that.viewModel.bind(that.viewModel.events.approveClaim, $.proxy(that.onApproveClaim, that));
+            that.viewModel.bind(that.viewModel.events.capturePhoto, $.proxy(that.onCapturePhoto, that));
         },
 
 		_initModule: function (e) {
@@ -72,7 +78,7 @@
 
             that.viewModel.set("ID", dataId);
 
-            app.sharepointService.getListItemById("claims",dataId,  $.proxy(that.setData, that),  $.proxy(that.onError, that));
+            app.sharepointService.getListItemById("Claims",dataId,  $.proxy(that.setData, that),  $.proxy(that.onError, that));
              
             that.viewModel.$view = $(that.viewModel.viewId);
         },
@@ -91,22 +97,36 @@
             //that.viewModel.set("innerClass", "fa " + claimData.Type.Icon);
             //that.viewModel.set("color", claimData.Type.Color);
 
-			app.common.hideLoading();
+			app.common.hideLoading(); 
 		},
         
-        onApproveclaim: function() {
+        onApproveClaim: function() { 
             var that = this;
-            
             app.common.showLoading("Approval proceeding. This might take a couple of minutes");
             
-            var updateclaim = {
+            var updateClaim = {
                 "Approved": true,
-                "__metadata": { 'type': 'SP.Data.claimsListItem' }
+                "__metadata": { 'type': 'SP.Data.ClaimsListItem' }
             }
             
-            app.sharepointService.updateListItem ("claims",  that.viewModel.get("Etag"),that.viewModel.get("ID"), updateclaim, $.proxy(that.claimApproved, that), that.onError)
+            app.sharepointService.updateListItem ("Claims",  that.viewModel.get("Etag"),that.viewModel.get("ID"), updateClaim, $.proxy(that.claimApproved, that), that.onError)
         },
         
+        onCapturePhoto: function() {
+            var that = this;
+            navigator.camera.getPicture(function(imageData){
+                
+                app.sharepointService.attachPictureToListItem ("Claims",that.viewModel.get("ID"), imageData,function(){
+                    alert('success');
+                },function(e){
+                    console.log(JSON.stringify(e));
+                });
+                
+            }, this._onCaptureFail, { quality: 5, destinationType: Camera.DestinationType.FILE_URL}); 
+        },
+        _onCaptureFail: function(message){
+            alert(message);
+        },
         claimApproved: function(data) {
             var that = this;
             //app.common.notification("Approval completed", "Approval completed");
