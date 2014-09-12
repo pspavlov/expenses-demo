@@ -163,6 +163,7 @@
             xhr.responseType = 'blob';
             xhr.send(); 
             
+            //It seems impossible to do that with the following ajax call !?!?
             //this._ajaxCallImage("web/lists/getByTitle('" + listname + "')/items(" + id + ")/AttachmentFiles('photo.jpg')/$value", success, error);
         },
     }

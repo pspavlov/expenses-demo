@@ -15,7 +15,7 @@
         Status: 'Registered',
         Etag: "",
         Uri: "",
-        Photo: "http://upload.wikimedia.org/wikipedia/commons/thumb/3/36/Trabant_601_Estate.jpg/220px-Trabant_601_Estate.jpg",
+        Photo: "//:0",
         events: {
             approveClaim: "approveClaim", 
             capturePhoto: "capturePhoto"
