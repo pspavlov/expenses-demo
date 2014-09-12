@@ -12,9 +12,10 @@
         viewId: "#bill-details-view",
         Description: "",
         Amount: 0,
-        Approved: false,
+        Status: 'Registered',
         Etag: "",
         Uri: "",
+        Photo: "http://upload.wikimedia.org/wikipedia/commons/thumb/3/36/Trabant_601_Estate.jpg/220px-Trabant_601_Estate.jpg",
         events: {
             approveClaim: "approveClaim", 
             capturePhoto: "capturePhoto"
@@ -22,16 +23,15 @@
         
 		init: function () {
 			var that = this;
-            
 			kendo.data.ObservableObject.fn.init.apply(that, arguments);
         },
         
-        onApproveClaimClick: function() {
+        onApproveClaimClick: function() { 
             var that = this;
             
             that.trigger(that.events.approveClaim, {});
         },
-        onAddPhotoClick: function() {
+        onAddPhotoClick: function() {          
             var that = this;
             that.trigger(that.events.capturePhoto, {});  
         }
@@ -76,9 +76,11 @@
             
             app.common.showLoading();
 
-            that.viewModel.set("ID", dataId);
+            that.viewModel.set("ID", dataId);  
 
             app.sharepointService.getListItemById("Claims",dataId,  $.proxy(that.setData, that),  $.proxy(that.onError, that));
+            
+            app.sharepointService.getAttachmentByListItemId ("Claims",dataId, $.proxy(that.setPhoto, that),  $.proxy(that.onError, that));
              
             that.viewModel.$view = $(that.viewModel.viewId);
         },
@@ -89,16 +91,24 @@
 
             that.viewModel.set("Title", claimData.Title);
             that.viewModel.set("Description", claimData.Description);
+            that.viewModel.set("Status", claimData.Status);
+            that.viewModel.set("Location", claimData.Location);
             that.viewModel.set("Amount", claimData.Amount);
-            that.viewModel.set("Approved", claimData.Approved);
+			
             that.viewModel.set("Etag", claimData.__metadata.etag);
             that.viewModel.set("Uri", claimData.__metadata.uri);
             //that.viewModel.set("parentClass",  "ds-icon ds-icon-" + claimData.Type.Icon);
             //that.viewModel.set("innerClass", "fa " + claimData.Type.Icon);
             //that.viewModel.set("color", claimData.Type.Color);
-
 			app.common.hideLoading(); 
 		},
+        setPhoto : function(blob){
+            var url = window.URL || window.webkitURL;
+            var imgSrc = url.createObjectURL(blob);
+           
+            this.viewModel.set("Photo", imgSrc);
+        },
+        
         
         onApproveClaim: function() { 
             var that = this;
@@ -122,10 +132,10 @@
                     console.log(JSON.stringify(e));
                 });
                 
-            }, this._onCaptureFail, { quality: 5, destinationType: Camera.DestinationType.FILE_URL}); 
+            }, this._onCaptureFail, { quality: 50, destinationType: Camera.DestinationType.FILE_URL}); 
         },
         _onCaptureFail: function(message){
-            alert(message);
+            console.log(message);
         },
         claimApproved: function(data) {
             var that = this;
@@ -137,7 +147,8 @@
         },
 
 		onError: function (e) {
-			app.common.hideLoading();
+			console.log(JSON.stringify(e));
+            app.common.hideLoading();
 			app.common.notification("Error", JSON.stringify(e));
 		}
 	});

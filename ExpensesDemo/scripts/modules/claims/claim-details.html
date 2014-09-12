@@ -1,57 +1,44 @@
 <div id="bill-details-view"
      class="view bill-details-view"
-	 data-role="view"
-	 data-layout="drawer-layout"
+     data-role="view"
+     data-layout="drawer-layout"
      data-transition="overlay:left"
      data-init="app.claimDetailsService.initModule"
-	 data-show="app.claimDetailsService.showModule"
-	 data-model="app.claimDetailsService.viewModel">
+     data-show="app.claimDetailsService.showModule"
+     data-model="app.claimDetailsService.viewModel">
 
-	<div data-role="header">
+    <div data-role="header">
         <div data-role="navbar">
-             <h1 data-bind="text: Title"></h1>
-            <a class="ds-header-button ds-header-back" data-align="left" data-role="backbutton"><i class="fa fa-chevron-left"></i><span>Back</span></a>
-		</div>
-	</div>
-    
-	<div class="bill-details-items">
-        <span data-bind="attr: { class: parentClass }">
-            <i data-bind="attr: { class: innerClass }"></i>
-        </span>
-        
-        <span class="ds-item-wrp ds-item-right ds-item-has-icon">
-            <span class="ds-title">Title</span>
-            <span class="ds-value" data-bind="text: Title"></span>
-        </span>
-        
-        <span class="ds-item-wrp">
-            <span class="ds-title">Description</span>
-            <span class="ds-value" data-bind="html: Description">#: Description #</span>
-        </span>
-        
-        <span class="ds-item-wrp">
-            <span class="ds-title">Amount</span>
-            <span class="ds-value" data-bind="text: Amount">#: Amount #</span>
-        </span>        
+            <h1 data-bind="text: Title"></h1>
+            <a class="ds-header-button ds-header-back" data-align="left" data-role="backbutton">
+                <i class="fa fa-chevron-left"></i><span>Back</span>
+            </a>
+        </div>
     </div>
-    
-    <div >
-        <div class="ds-navbar" data-role="navbar">
-            <a class="ds-button ds-button-large ds-button-pay" data-role="button" data-bind="click: onAddPhotoClick">
-                <span class="ds-title">Add photo</span>
-            </a>
-		</div>
-	</div>
-    
+
+    <div class="bill-details-items">
+        <span data-bind="attr: { class: parentClass }"> <i data-bind="attr: { class: innerClass }"></i> </span>
+
+        <span class="ds-item-wrp ds-item-right ds-item-has-icon"> 
+            <img data-bind="attr: { src: Photo }"/> 
+        </span>
+
+        <span class="ds-item-wrp ds-item-right ds-item-has-icon"> <span class="ds-title">Title</span> <span class="ds-value" data-bind="text: Title"></span> </span>
+
+        <span class="ds-item-wrp"> <span class="ds-title">Description</span> <span class="ds-value" data-bind="text: Description">#:Description#</span> </span>
+
+        <span class="ds-item-wrp"> <span class="ds-title">Status</span> <span class="ds-value" data-bind="text: Status">#:Status#</span> </span>
+        <span class="ds-item-wrp"> <span class="ds-title">Location</span> <span class="ds-value" data-bind="text: Location">#:Location#</span> </span>
+        <span class="ds-item-wrp"> <span class="ds-title">Amount</span> <span class="ds-value" data-bind="text: Amount">#:Amount#</span> </span>
+    </div>
+
     <div data-role="footer" data-bind="invisible: Approved">
-        <div class="ds-navbar" data-role="navbar">
-            <a class="ds-button ds-button-large ds-button-pay" data-role="button" data-bind="click: onApproveClaimClick">
-                <span class="ds-title">Approve</span>
-                <span class="ds-cost">
-                    <span data-bind="text: Amount"></span>
-                    <span>$</span>
-                </span>
-            </a>
-		</div>
-	</div>
+        <div >
+            <div class="ds-navbar" data-role="navbar">
+                <a class="ds-button ds-button-large ds-button-pay" data-role="button" data-bind="click: onAddPhotoClick">
+                    <span class="ds-title">Add photo</span>
+                </a>
+            </div>
+        </div>
+    </div>
 </div>

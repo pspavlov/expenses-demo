@@ -46,12 +46,26 @@
                 headers:headers,
                 success: success,
                 error: error,
-                dataType: 'json',
+                dataType: 'json'
             };
             if (data) {
                 options.data = JSON.stringify(data);
             }
             
+            $.ajax(options);
+        },
+        _ajaxCallImage: function(path, success, error) {
+
+            headers = {};    
+            headers["Authorization"] = "Basic " + app.settingsService.userAuthHash;
+            var options = {
+                url: app.config.sharepoint.baseUrl + path,
+                type: 'GET',
+                headers:headers,
+                processData : false,
+                success: success,
+                error: error,
+            };
             $.ajax(options);
         },
         _ajaxCall1: function(path, method, data, headers, success, error) {
@@ -65,12 +79,12 @@
                 headers["X-RequestDigest"] = localStorage.getItem("formDigestValue");
             }
             var options = {
-                url: app.config.sharepoint.baseUrl + path,
+                url: app.config.sharepoint.baseUrl + path,    
                 type: method,
                 headers:headers,
                 success: success,
                 processData: false,
-                error: error,
+                error: error
             };
             if (data) {
                 options.data = data;
@@ -103,58 +117,6 @@
         createListItem: function(listname, data, success, error) {
             this._ajaxCall("web/lists/getByTitle('" + listname + "')/items", "POST", data, null, success, error); 
         },
-        decode: function(input, arrayBuffer) {
-            var _keyStr = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=";
-            //get last chars to see if are valid
-            var lkey1 = _keyStr.indexOf(input.charAt(input.length - 1));		 
-            var lkey2 = _keyStr.indexOf(input.charAt(input.length - 2));		 
-	
-            var bytes = (input.length / 4) * 3;
-            if (lkey1 == 64)
-                bytes--; //padding chars, so skip
-            if (lkey2 == 64)
-                bytes--; //padding chars, so skip
-		
-            var uarray;
-            var chr1, chr2, chr3;
-            var enc1, enc2, enc3, enc4;
-            var i = 0;  
-            var j = 0;
-		 
-            if (arrayBuffer)   
-                uarray = new Uint8Array(arrayBuffer);
-            else
-                uarray = new Uint8Array(bytes);
-		
-            input = input.replace(/[^A-Za-z0-9\+\/\=]/g, "");  
-		
-            for (i=0; i < bytes; i+=3) {	
-                //get the 3 octects in 4 ascii chars
-                enc1 = _keyStr.indexOf(input.charAt(j++));
-                enc2 = _keyStr.indexOf(input.charAt(j++));
-                enc3 = _keyStr.indexOf(input.charAt(j++));
-                enc4 = _keyStr.indexOf(input.charAt(j++));
-	
-                chr1 = (enc1 << 2) | (enc2 >> 4);
-                chr2 = ((enc2 & 15) << 4) | (enc3 >> 2);
-                chr3 = ((enc3 & 3) << 6) | enc4;  
-	
-                uarray[i] = chr1;	  		
-                if (enc3 != 64) 
-                    uarray[i + 1] = chr2;   
-                if (enc4 != 64)
-                    uarray[i + 2] = chr3;
-            }
-	
-            return uarray;
-        },
-        decodeArrayBuffer: function(input) {
-            var bytes = (input.length / 4) * 3;
-            ab = new ArrayBuffer(bytes); 
-            this.decode(input, ab);  
-		 
-            return ab;  
-        },       
         
         copy: function (buffer) {
             var bytes = new Uint8Array(buffer);
@@ -163,8 +125,8 @@
             for (var i = 0; i < bytes.length; i++)
                 m
             outputBytes[i] = bytes[i];
+
             return output;            
-            return output;      
         },
         
         attachPictureToListItem: function(listname, id , imageURI, success, error) {
@@ -175,15 +137,34 @@
 
                     reader.onloadend = function(e) {
                         console.log(e.target.result.byteLength);
-                        that._ajaxCall1("web/lists/getByTitle('" + listname + "')/items(" + id + ")/AttachmentFiles/add(FileName='p11.jpg')", "POST", e.target.result, null, success, error);
+                        that._ajaxCall1("web/lists/getByTitle('" + listname + "')/items(" + id + ")/AttachmentFiles/add(FileName='photo.jpg')", "POST", e.target.result, null, success, error);
                     }
 
                     reader.readAsArrayBuffer(file);
                 });
             }, function(e) {
-                alert(JSON.stringify(e))
+                console.log(JSON.stringify(e))
             });
-        }
+        },
+        
+        getAttachmentByListItemId: function(listname, id, success, error) {
+            //TODO make this work with PNG images as well.
+            var url = app.config.sharepoint.baseUrl +  "web/lists/getByTitle('" + listname + "')/items(" + id + ")/AttachmentFiles('photo.jpg')/$value";
+            var xhr = new XMLHttpRequest();
+            
+            xhr.onreadystatechange = function(){
+                if (this.readyState == 4 && this.status == 200){
+                    var blob = new Blob([this.response], {type: 'image/jpg'})
+                    success(blob);
+                }
+            }
+            xhr.open('GET', url);
+            xhr.setRequestHeader("Authorization","Basic " + app.settingsService.userAuthHash);
+            xhr.responseType = 'blob';
+            xhr.send(); 
+            
+            //this._ajaxCallImage("web/lists/getByTitle('" + listname + "')/items(" + id + ")/AttachmentFiles('photo.jpg')/$value", success, error);
+        },
     }
     app.sharepointService = new SharepointService();
 })(window);

@@ -47,9 +47,10 @@
             newclaim = {
                 "Title": that.viewModel.get("Title"),
                 "Description": that.viewModel.get("Description"),
+                "Location": that.viewModel.get("Location"),
                 "Amount": that.viewModel.get("Amount"),
-                "Approved": false,
-                "__metadata": { 'type': 'SP.Data.claimsListItem' }
+                "Status": "Registered",
+                "__metadata": { 'type': 'SP.Data.ClaimsListItem' }
             }
             
             app.common.showLoading();
